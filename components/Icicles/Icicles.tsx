@@ -1,5 +1,5 @@
 import { GlobalContext } from '@/GlobalContext';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Icicle from './Icicle';
 import { IcicleWrapper } from './IciclesStyles';
 
@@ -11,7 +11,7 @@ interface IciclesProps {
 }
 
 const defaultProps: IciclesProps = {
-	parentRef: null,
+	parentRef: useRef(),
 	heightConstrains: { min: 30, max: 60 },
 	widthConstrains: { min: 10, max: 40 },
 	top: '100%',
@@ -27,6 +27,7 @@ const Icicles: React.FC<IciclesProps> = ({ parentRef, heightConstrains, widthCon
 		let curr = 0;
 		const icicleValues: { height: number; width: number }[] = [];
 		while (true) {
+			if (!heightConstrains || !widthConstrains) break;
 			if (curr < max) {
 				const height = Math.floor(
 					Math.random() * (heightConstrains.max - heightConstrains.min + 1) +
