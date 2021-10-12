@@ -1,4 +1,4 @@
-import { MotionStyle } from 'framer-motion';
+import { CSSProperties } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 
@@ -44,7 +44,7 @@ export const SocialMediaIconWrapper = styled.a`
 	}
 `;
 
-export const DonateButtonStyle: MotionStyle = {
+export const DonateButtonStyle: CSSProperties = {
 	display: 'grid',
 	placeItems: 'center',
 	backgroundColor: colors.secondaryPrimay,
