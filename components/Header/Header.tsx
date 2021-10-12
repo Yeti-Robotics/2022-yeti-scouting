@@ -6,11 +6,10 @@ import Icicles from '../Icicles';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HeaderContext } from './Context';
-import { GlobalContext } from '@/GlobalContext';
+import { colors } from '@/styles/colors';
 
 const Header: React.FC = () => {
 	const { showHeader, clickableDropdownShown } = useContext(HeaderContext);
-	const { windowDimensions } = useContext(GlobalContext);
 	const showHeaderCB = useCallback(() => {
 		if (!clickableDropdownShown) {
 			showHeader();
@@ -42,13 +41,7 @@ const Header: React.FC = () => {
 			<HeaderWrapper ref={headerRef}>
 				<LogoWrapper>
 					<Link href='/'>
-						<Image
-							src='../../images/yeti-logo-with-text2.png'
-							height={82}
-							width={150}
-							loading='eager'
-							alt='YETI Logo'
-						/>
+						<h1 style={{ color: colors.secondary }}>Scouting</h1>
 					</Link>
 				</LogoWrapper>
 
