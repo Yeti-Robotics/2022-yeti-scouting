@@ -1,10 +1,8 @@
 import React from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
-import DonateButton from '../DonateButton';
 import PageContainer from '../PageContainer';
 import { MainContainer } from './LayoutStyles';
-import SEO from '../SEO';
 
 interface LayoutProps {
 	children?: React.ReactNode;
@@ -18,13 +16,9 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, style, title, description, image, article }) => {
 	return (
 		<>
-			<SEO title={title} description={description} image={image} article={article} />
 			<PageContainer>
 				<Header />
-				<MainContainer style={style}>
-					<DonateButton />
-					{children}
-				</MainContainer>
+				<MainContainer style={style}>{children}</MainContainer>
 				<Footer />
 			</PageContainer>
 		</>
