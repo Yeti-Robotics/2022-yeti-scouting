@@ -41,7 +41,7 @@ const Header: React.FC = () => {
 			<HeaderWrapper ref={headerRef}>
 				<LogoWrapper>
 					<Link href='/'>
-						<h1 style={{ color: colors.secondary }}>Scouting</h1>
+						<h6 style={{ color: colors.secondary, margin: 0 }}>Scouting</h6>
 					</Link>
 				</LogoWrapper>
 

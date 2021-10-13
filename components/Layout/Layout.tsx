@@ -7,13 +7,9 @@ import { MainContainer } from './LayoutStyles';
 interface LayoutProps {
 	children?: React.ReactNode;
 	style?: React.CSSProperties;
-	title: string;
-	description?: string;
-	image?: string;
-	article?: boolean;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, style, title, description, image, article }) => {
+const Layout: React.FC<LayoutProps> = ({ children, style }) => {
 	return (
 		<>
 			<PageContainer>
@@ -23,12 +19,6 @@ const Layout: React.FC<LayoutProps> = ({ children, style, title, description, im
 			</PageContainer>
 		</>
 	);
-};
-
-Layout.defaultProps = {
-	title: '',
-	description: '',
-	image: '',
 };
 
 export default Layout;

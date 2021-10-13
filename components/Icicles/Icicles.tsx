@@ -11,7 +11,7 @@ interface IciclesProps {
 }
 
 const defaultProps: IciclesProps = {
-	parentRef: useRef(),
+	parentRef: null,
 	heightConstrains: { min: 30, max: 60 },
 	widthConstrains: { min: 10, max: 40 },
 	top: '100%',
