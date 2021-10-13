@@ -10,13 +10,6 @@ interface IciclesProps {
 	top?: number | string;
 }
 
-const defaultProps: IciclesProps = {
-	parentRef: null,
-	heightConstrains: { min: 30, max: 60 },
-	widthConstrains: { min: 10, max: 40 },
-	top: '100%',
-};
-
 const Icicles: React.FC<IciclesProps> = ({ parentRef, heightConstrains, widthConstrains, top }) => {
 	const getParentWidth = () => parentRef.current?.offsetWidth;
 	const { windowDimensions } = useContext(GlobalContext);
@@ -71,6 +64,10 @@ const Icicles: React.FC<IciclesProps> = ({ parentRef, heightConstrains, widthCon
 	);
 };
 
-Icicles.defaultProps = defaultProps;
+Icicles.defaultProps = {
+	heightConstrains: { min: 30, max: 60 },
+	widthConstrains: { min: 10, max: 40 },
+	top: '100%',
+};
 
 export default Icicles;
