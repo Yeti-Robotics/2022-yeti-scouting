@@ -1,5 +1,4 @@
-import { GlobalContext } from '@/GlobalContext';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Icicle from './Icicle';
 import { IcicleWrapper } from './IciclesStyles';
 
@@ -12,7 +11,6 @@ interface IciclesProps {
 
 const Icicles: React.FC<IciclesProps> = ({ parentRef, heightConstrains, widthConstrains, top }) => {
 	const getParentWidth = () => parentRef.current?.offsetWidth;
-	const { windowDimensions } = useContext(GlobalContext);
 	const [icicles, setIcicles] = useState<{ height: number; width: number }[]>([]);
 
 	const createIcicles = () => {

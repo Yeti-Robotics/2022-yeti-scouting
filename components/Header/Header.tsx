@@ -3,7 +3,6 @@ import { HeaderWrapper, LogoWrapper } from './HeaderStyles';
 import ClickableDropdown from '../ClickableDropdown';
 import { useHidingHeader } from '../../hooks/useHidingHeader';
 import Icicles from '../Icicles';
-import Image from 'next/image';
 import Link from 'next/link';
 import { HeaderContext } from './Context';
 import { colors } from '@/styles/colors';
@@ -40,8 +39,10 @@ const Header: React.FC = () => {
 		<>
 			<HeaderWrapper ref={headerRef}>
 				<LogoWrapper>
-					<Link href='/'>
-						<h6 style={{ color: colors.secondary, margin: 0 }}>Scouting</h6>
+					<Link href='/' passHref>
+						<a style={{ color: colors.secondary, margin: 0, fontSize: '3rem' }}>
+							Scouting
+						</a>
 					</Link>
 				</LogoWrapper>
 

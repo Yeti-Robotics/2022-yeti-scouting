@@ -1,9 +1,11 @@
 import React from 'react';
 import ContextProvider from './Context';
-import Header from './Header';
+import HeaderComponent from './Header';
 
-export default () => (
+const Header = () => (
 	<ContextProvider>
-		<Header />
+		<HeaderComponent />
 	</ContextProvider>
 );
+
+export default Header;

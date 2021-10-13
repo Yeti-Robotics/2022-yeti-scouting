@@ -10,7 +10,7 @@
 	],
 	"plugins": ["@typescript-eslint", "prettier"],
 	"rules": {
-		"react-hooks/exaustive-deps": "off",
+		"react-hooks/exhaustive-deps": "off",
 		"no-constant-condition": "off",
 		"quotes": "off",
 		"@typescript-eslint/quotes": [
