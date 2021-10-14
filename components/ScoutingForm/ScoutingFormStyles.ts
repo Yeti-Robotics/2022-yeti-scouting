@@ -88,13 +88,12 @@ export const Submit = styled.input`
 
 export const HoriSelect = styled.select`
 	display: table-row;
-	font-size: 3.5vw;
-	height: calc(3.5vw + 30px);
+	font-size: 1rem;
+	height: calc(3rem + 5px);
 	overflow-y: hidden;
 	border: 2px solid #000000;
 	border-radius: 10px;
 	cursor: pointer;
-	max-width: 95%;
 	appearance: none !important;
 
 	&:focus {
@@ -103,7 +102,7 @@ export const HoriSelect = styled.select`
 
 	option {
 		display: table-cell;
-		padding: 12.5px 4vw 12.5px 4vw;
+		padding: 1rem 3vw 1rem 3vw;
 		border-right: 2px solid #000000;
 		transition: background-color 0.3s ease;
 
