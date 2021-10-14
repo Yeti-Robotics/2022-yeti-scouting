@@ -95,12 +95,13 @@ export const HoriSelect = styled.select`
 
 	@media only screen and (min-width: 400px) {
 		display: table-row;
-		height: calc(3rem + 5px);
+		font-size: 3vw;
+		height: calc(3vw + 35px);
 		appearance: none !important;
 
 		option {
 			display: table-cell;
-			padding: 1rem 3vw 1rem 3vw;
+			padding: 12.5px 3vw 12.5px 3vw;
 			border-right: 2px solid #000000;
 		}
 	}
