@@ -63,39 +63,40 @@ const ClickableDropdownItem: React.FC<ClickableDropDownItemProps> = ({ item, cur
 
 	return (
 		<>
-			<TitleWrapper onClick={(e) => e.stopPropagation()}>
-				<InteractiveWrapper
-					ref={parentButtonRef}
-					style={{
-						backgroundColor: isDonate ? colors.primary : colors.secondary,
-						color: isDonate ? colors.secondary : colors.primary,
-					}}
-				>
-					<Link href={item.href} passHref>
+			<Link href={item.href} passHref>
+				<TitleWrapper onClick={(e) => e.stopPropagation()}>
+					<InteractiveWrapper
+						ref={parentButtonRef}
+						style={{
+							backgroundColor: isDonate ? colors.primary : colors.secondary,
+							color: isDonate ? colors.secondary : colors.primary,
+						}}
+					>
 						<Title>{item.title}</Title>
-					</Link>
-					{item.children.length ? (
-						<ExpandButton onClick={handleOpen}>{thisOpen ? '-' : '+'}</ExpandButton>
-					) : (
-						<div style={{ height: 47 }} />
+
+						{item.children.length ? (
+							<ExpandButton onClick={handleOpen}>{thisOpen ? '-' : '+'}</ExpandButton>
+						) : (
+							<div style={{ height: 47 }} />
+						)}
+					</InteractiveWrapper>
+					{thisOpen && (
+						<ChildrenMenu>
+							<div>
+								{item.children.map((child, index) => (
+									<div key={index}>
+										<Link href={child.href} passHref>
+											<Child onClick={(e) => e.stopPropagation()}>
+												{child.title}
+											</Child>
+										</Link>
+									</div>
+								))}
+							</div>
+						</ChildrenMenu>
 					)}
-				</InteractiveWrapper>
-				{thisOpen && (
-					<ChildrenMenu>
-						<div>
-							{item.children.map((child, index) => (
-								<div key={index}>
-									<Link href={child.href} passHref>
-										<Child onClick={(e) => e.stopPropagation()}>
-											{child.title}
-										</Child>
-									</Link>
-								</div>
-							))}
-						</div>
-					</ChildrenMenu>
-				)}
-			</TitleWrapper>
+				</TitleWrapper>
+			</Link>
 		</>
 	);
 };
