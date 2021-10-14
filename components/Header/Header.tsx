@@ -40,7 +40,7 @@ const Header: React.FC = () => {
 			<HeaderWrapper ref={headerRef}>
 				<LogoWrapper>
 					<Link href='/' passHref>
-						<a style={{ color: colors.secondary, margin: 0, fontSize: '3rem' }}>
+						<a style={{ color: colors.secondary, margin: 0, fontSize: '2.6rem' }}>
 							Scouting
 						</a>
 					</Link>
@@ -58,21 +58,21 @@ const Header: React.FC = () => {
 							{
 								title: 'Login',
 								href: '/login',
-								children: []
-							}
+								children: [],
+							},
 						]}
 					/>
 				</>
 				<Icicles
 					parentRef={headerRef}
-					widthConstrains={{ max: 20, min: 15 }}
-					heightConstrains={{ max: 100, min: 70 }}
+					widthConstrains={{ max: 10, min: 5 }}
+					heightConstrains={{ max: 50, min: 35 }}
 					top='99%'
 				/>
 				<Icicles
 					parentRef={headerRef}
-					widthConstrains={{ max: 20, min: 15 }}
-					heightConstrains={{ max: 100, min: 70 }}
+					widthConstrains={{ max: 10, min: 5 }}
+					heightConstrains={{ max: 50, min: 35 }}
 					top='99%'
 				/>
 			</HeaderWrapper>
