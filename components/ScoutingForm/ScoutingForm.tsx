@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Form } from '@/models/form';
 import { Checkbox, Field, Input, HoriSelect, Section, Submit } from './ScoutingFormStyles';
 import { colors } from '@/styles/colors';
-import { GlobalContext } from '@/GlobalContext';
 
 const defaultOptions = {
 	required: true,
@@ -13,7 +12,6 @@ const defaultOptions = {
 
 const ScoutingForm = () => {
 	const { register, handleSubmit } = useForm<Form>();
-	const { windowDimensions } = useContext(GlobalContext);
 
 	return (
 		<form
@@ -50,7 +48,6 @@ const ScoutingForm = () => {
 
 				<Field>
 					<label htmlFor='preload'>How many balls were preloaded?</label>
-					{windowDimensions.width >= 375}
 					<HoriSelect
 						{...register('preload', { ...defaultOptions, valueAsNumber: true })}
 						id='preload'

@@ -87,23 +87,30 @@ export const Submit = styled.input`
 `;
 
 export const HoriSelect = styled.select`
-	display: table-row;
 	font-size: 1rem;
-	height: calc(3rem + 5px);
 	overflow-y: hidden;
+	cursor: pointer;
 	border: 2px solid #000000;
 	border-radius: 10px;
-	cursor: pointer;
-	appearance: none !important;
+
+	@media only screen and (min-width: 400px) {
+		display: table-row;
+		height: calc(3rem + 5px);
+		appearance: none !important;
+
+		option {
+			display: table-cell;
+			padding: 1rem 3vw 1rem 3vw;
+			border-right: 2px solid #000000;
+		}
+	}
 
 	&:focus {
 		outline: none;
 	}
 
 	option {
-		display: table-cell;
-		padding: 1rem 3vw 1rem 3vw;
-		border-right: 2px solid #000000;
+		padding: 1rem;
 		transition: background-color 0.3s ease;
 
 		&:hover {
