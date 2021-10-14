@@ -38,18 +38,6 @@ export const Field = styled.div`
 		width: 90%;
 		height: 30vh;
 	}
-
-	select {
-		display: table-row;
-		font-size: 2rem;
-		height: 4rem;
-		overflow-y: hidden;
-
-		option {
-			display: table-cell;
-			padding: 12.5px 4vw 12.5px 4vw;
-		}
-	}
 `;
 
 export const Input = styled.input`
@@ -59,12 +47,13 @@ export const Input = styled.input`
 
 export const HoriSelect = styled.select`
 	display: table-row;
-	font-size: 9vw;
-	height: 4rem;
+	font-size: 3.5vw;
+	height: calc(3.5vw + 30px);
 	overflow-y: hidden;
 	border: 2px solid #000000;
 	border-radius: 10px;
 	cursor: pointer;
+	max-width: 95%;
 
 	option {
 		display: table-cell;
