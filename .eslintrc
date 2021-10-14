@@ -22,7 +22,7 @@
 		],
 		"@typescript-eslint/no-empty-function": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
-		"indent": "off",
+		"indent": "useTabs",
 		"prettier/prettier": [
 			"error",
 			{
