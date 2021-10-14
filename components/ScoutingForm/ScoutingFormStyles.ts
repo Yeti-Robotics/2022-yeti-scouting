@@ -11,9 +11,11 @@ export const Section = styled.div`
 	box-shadow: ${colors.defaultShadow};
 
 	h1 {
+		color: ${colors.secondary};
 		margin: 0;
 		padding: 20px 10px 20px 10px;
-		background-color: #eaeaea;
+		background: rgb(0, 0, 0);
+		background: linear-gradient(360deg, rgba(0, 0, 0, 1) 0%, rgba(234, 234, 234, 1) 100%);
 		border-bottom: 2px solid #000000;
 		border-radius: 10px 10px 0 0;
 	}
@@ -42,7 +44,20 @@ export const Field = styled.div`
 
 export const Input = styled.input`
 	width: 90%;
-	padding: 10px;
+	padding: 15px;
+	border: 2px solid #000000;
+	border-radius: 10px;
+	font-size: 1.5rem;
+	transition: border-color 0.3s ease, background-color 0.3s ease;
+
+	&:hover {
+		border-color: blue;
+	}
+
+	&:focus {
+		outline: none;
+		border-color: blue;
+	}
 `;
 
 export const HoriSelect = styled.select`
@@ -58,6 +73,12 @@ export const HoriSelect = styled.select`
 	option {
 		display: table-cell;
 		padding: 12.5px 4vw 12.5px 4vw;
+		border-right: 2px solid #000000;
+		transition: background-color 0.3s ease;
+
+		&:hover {
+			background-color: ${colors.primary};
+		}
 	}
 `;
 
