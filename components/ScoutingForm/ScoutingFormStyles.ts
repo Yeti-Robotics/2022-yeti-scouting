@@ -95,6 +95,7 @@ export const HoriSelect = styled.select`
 	border-radius: 10px;
 	cursor: pointer;
 	max-width: 95%;
+	appearance: none !important;
 
 	&:focus {
 		outline: none;
