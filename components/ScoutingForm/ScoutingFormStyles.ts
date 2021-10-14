@@ -44,6 +44,7 @@ export const Field = styled.div`
 	textarea {
 		width: 90%;
 		height: 30vh;
+		font-size: 1rem;
 	}
 `;
 
