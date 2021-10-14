@@ -15,7 +15,7 @@ const ScoutingForm = () => {
     return (
         <form onSubmit={handleSubmit((data) => {
             console.log(data)
-        })} style={{ width: 'clamp(300px, 1000px, 100%)', display: 'grid', placeItems: 'center' }}>
+        })} style={{ width: 'clamp(300px, 2400px, 100%)', display: 'grid', placeItems: 'center' }}>
             <Section>
                 <h1>Match Info</h1>
 
