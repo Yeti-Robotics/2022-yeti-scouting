@@ -53,9 +53,7 @@ const ScoutingForm = () => {
 						id='preload'
 						size={4}
 					>
-						<option value={0} selected>
-							0
-						</option>
+						<option value={0}>0</option>
 						<option value={1}>1</option>
 						<option value={2}>2</option>
 						<option value={3} style={{ border: 0 }}>
@@ -80,9 +78,7 @@ const ScoutingForm = () => {
 						id='spill_balls'
 						size={3}
 					>
-						<option value={0} selected>
-							None
-						</option>
+						<option value={0}>None</option>
 						<option value={1}>Some balls</option>
 						<option value={2} style={{ border: 0 }}>
 							Into another robot
