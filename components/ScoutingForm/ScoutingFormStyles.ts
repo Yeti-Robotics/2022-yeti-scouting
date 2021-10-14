@@ -11,14 +11,14 @@ export const Section = styled.div`
 	box-shadow: ${colors.defaultShadow};
 
 	h1 {
-		color: ${colors.secondary};
 		margin: 0;
 		padding: 20px 10px 20px 10px;
 		background: rgb(0, 0, 0);
 		background: linear-gradient(
 			360deg,
 			rgba(0, 0, 0, 1) 0%,
-			rgba(94, 94, 94, 1) 20%,
+			rgba(78, 78, 78, 1) 0%,
+			rgba(94, 94, 94, 1) 14%,
 			rgba(234, 234, 234, 1) 100%
 		);
 		border-bottom: 2px solid #000000;
@@ -65,10 +65,31 @@ export const Input = styled.input`
 	}
 `;
 
+export const Submit = styled.input`
+	width: 95%;
+	padding: 15px;
+	border-radius: 10px;
+	font-size: 2rem;
+	font-weight: bold;
+	box-shadow: ${colors.defaultShadow};
+	background: rgb(0, 0, 0);
+	background: linear-gradient(
+		360deg,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(78, 78, 78, 1) 0%,
+		rgba(94, 94, 94, 1) 14%,
+		rgba(234, 234, 234, 1) 100%
+	);
+
+	&:focus {
+		outline: none;
+	}
+`;
+
 export const HoriSelect = styled.select`
 	display: table-row;
 	font-size: 3.5vw;
-	height: calc(3.5vw + 35px);
+	height: calc(3.5vw + 30px);
 	overflow-y: hidden;
 	border: 2px solid #000000;
 	border-radius: 10px;
