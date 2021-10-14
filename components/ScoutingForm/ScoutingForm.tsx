@@ -43,7 +43,7 @@ const ScoutingForm = () => {
                 </Field>
                 <Field>
                     <label htmlFor='cross_initiaion_line'>Did the robot cross the initiation line? (moved)</label>
-                    <Checkbox {...register('cross_initiation_line', defaultOptions)} type='checkbox' id='cross_initiation_line' />
+                    <Checkbox {...register('cross_initiation_line')} type='checkbox' id='cross_initiation_line' />
                 </Field>
                 <Field>
                     <label htmlFor='spill_balls'>Ball spilled?</label>
