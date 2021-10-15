@@ -9,7 +9,7 @@ const ScoreInput = ({ label, name, control, ...inputProps }) => {
         <Controller
             name={name}
             control={control}
-            defaultValue={defaultValue || 0}
+            defaultValue={0}
             render={({ field: { value, onChange, name, ref } }) =>
             (
             <>
