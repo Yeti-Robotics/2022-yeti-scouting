@@ -21,7 +21,7 @@ export const Section = styled.div`
 			rgba(94, 94, 94, 1) 14%,
 			rgba(234, 234, 234, 1) 100%
 		);
-		border-bottom: 2px solid #000000;
+		border-bottom: 4px solid #000000;
 		border-radius: 10px 10px 0 0;
 	}
 `;
@@ -36,8 +36,6 @@ export const Field = styled.div`
 
 	label {
 		font-size: 2rem;
-		align-self: flex-start;
-		margin: 0 0 15px 5%;
 		width: 95%;
 	}
 
@@ -46,6 +44,9 @@ export const Field = styled.div`
 		height: 30vh;
 		font-size: 1rem;
 	}
+
+
+
 `;
 
 export const Input = styled.input`
@@ -87,37 +88,88 @@ export const Submit = styled.input`
 	}
 `;
 
-export const HoriSelect = styled.select`
-	font-size: 1rem;
-	overflow-y: hidden;
-	cursor: pointer;
-	border: 2px solid #000000;
+export const Select = styled.select`
+	width: 90%;
 	border-radius: 10px;
+	height: 50px;
+
+	&:focus {
+		outline: 4px blue !important;
+	}
+`;
+
+export const HoriSelect = styled.select`
+	margin: 25px 0 0 0 !important;
+	font-size: 1rem !important;
+	overflow-y: hidden !important;
+	cursor: pointer !important;
+	border: 2px solid #000000 !important;
+	border-radius: 10px !important;
+	width: auto !important;
 
 	@media only screen and (min-width: 400px) {
-		display: table-row;
-		font-size: 3vw;
-		height: calc(3vw + 35px);
+		display: table-row !important;
+		font-size: 3vw !important;
+		height: calc(3vw + 35px) !important;
 		appearance: none !important;
 
 		option {
-			display: table-cell;
-			padding: 12.5px 3vw 12.5px 3vw;
-			border-right: 2px solid #000000;
+			display: table-cell !important;
+			padding: 12.5px 3vw 12.5px 3vw !important;
+			border-right: 2px solid #000000 !important;
 		}
-	}
-
-	&:focus {
-		outline: none;
 	}
 
 	option {
-		padding: 1rem;
-		transition: background-color 0.3s ease;
+		padding: 1rem !important;
+		transition: background-color 0.3s ease !important;
 
 		&:hover {
-			background-color: ${colors.primary};
+			background-color: ${colors.primary} !important;
 		}
+	}
+`;
+
+export const ScoreInputStyles = styled.div`
+	position: relative;
+	margin: 25px 40px 0 40px;
+	width: 70%;
+
+	button {
+		display: grid;
+		place-items: center;
+		height: 100%;
+		width: 40px;
+		font-size: 2rem;
+		margin: 0;
+		padding: 15px;
+		border: 0;
+		top: 0;
+		border-radius: 0 3px 3px 0;
+		position: absolute;
+		background-color: ${colors.primary};
+		transition: background-color 0.3s ease;
+		cursor: pointer;
+
+		&:focus {
+			outline: 4px solid lightblue;
+			background-color: ${colors.secondaryPrimay};
+		}
+
+		&:hover {
+			outline: 4px solid lightblue;
+			background-color: ${colors.secondaryPrimay};
+		}
+	}
+
+	input {
+		width: 100%;
+		height: 100%;
+		padding: 15px;
+		font-size: 1.5rem;
+		border-radius: 0;
+		border-right: 0;
+		border-left: 0;
 	}
 `;
 
