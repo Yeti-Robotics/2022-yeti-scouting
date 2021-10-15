@@ -4,11 +4,11 @@ import { NextPage } from 'next';
 import React from 'react';
 
 const standScouting: NextPage = () => {
-    return (
-        <Layout>
-            <ScoutingForm />
-        </Layout>
-    );
-}
+	return (
+		<Layout>
+			<ScoutingForm />
+		</Layout>
+	);
+};
 
 export default standScouting;

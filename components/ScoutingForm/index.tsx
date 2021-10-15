@@ -1,3 +1,3 @@
-import ScoutingForm from "./ScoutingForm";
+import ScoutingForm from './ScoutingForm';
 
 export default ScoutingForm;

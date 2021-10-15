@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Form } from '@/models/form';
 import { Checkbox, Field, Input, HoriSelect, Section, Submit, Select } from './ScoutingFormStyles';
-import { colors } from '@/styles/colors';
 import ScoreInput from './ScoreInput';
 
 const defaultOptions = {
@@ -75,16 +74,32 @@ const ScoutingForm = () => {
 					/>
 				</Field>
 				<Field>
-					<ScoreInput control={control} label='Balls scored in upper:' name='auto_upper_scored_balls' />
+					<ScoreInput
+						control={control}
+						label='Balls scored in upper:'
+						name='auto_upper_scored_balls'
+					/>
 				</Field>
 				<Field>
-					<ScoreInput control={control} label='Balls missed in upper:' name='auto_upper_missed_balls' />
+					<ScoreInput
+						control={control}
+						label='Balls missed in upper:'
+						name='auto_upper_missed_balls'
+					/>
 				</Field>
 				<Field>
-					<ScoreInput control={control} label='Balls scored in lower:' name='auto_low_scored_balls' />
+					<ScoreInput
+						control={control}
+						label='Balls scored in lower:'
+						name='auto_low_scored_balls'
+					/>
 				</Field>
 				<Field>
-					<ScoreInput control={control} label='Balls missed in lower:' name='auto_low_missed_balls' />
+					<ScoreInput
+						control={control}
+						label='Balls missed in lower:'
+						name='auto_low_missed_balls'
+					/>
 				</Field>
 				<Field>
 					<label htmlFor='spill_balls'>Ball spilled?</label>
@@ -107,22 +122,43 @@ const ScoutingForm = () => {
 				<h1>TeleOp</h1>
 
 				<Field>
-					<ScoreInput control={control} label='Balls scored in upper:' name='teleop_upper_scored_balls' />
+					<ScoreInput
+						control={control}
+						label='Balls scored in upper:'
+						name='teleop_upper_scored_balls'
+					/>
 				</Field>
 				<Field>
-					<ScoreInput control={control} label='Balls missed in upper:' name='teleop_upper_missed_balls' />
+					<ScoreInput
+						control={control}
+						label='Balls missed in upper:'
+						name='teleop_upper_missed_balls'
+					/>
 				</Field>
 				<Field>
-					<ScoreInput control={control} label='Balls scored in lower' name='teleop_low_scored_balls' />
+					<ScoreInput
+						control={control}
+						label='Balls scored in lower'
+						name='teleop_low_scored_balls'
+					/>
 				</Field>
 				<Field>
-					<ScoreInput control={control} label='Balls missed in lower' name='teleop_low_missed_balls' />
+					<ScoreInput
+						control={control}
+						label='Balls missed in lower'
+						name='teleop_low_missed_balls'
+					/>
 				</Field>
 				<Field>
-					<label style={{ fontSize: '1.5rem' }}>How was their defense(0 is none, 1 or 2 if they got a penalty, 3+ if it was good)</label>
-					<HoriSelect {...register('defense', { ...defaultOptions, valueAsNumber: true })}
+					<label style={{ fontSize: '1.5rem' }}>
+						How was their defense(0 is none, 1 or 2 if they got a penalty, 3+ if it was
+						good)
+					</label>
+					<HoriSelect
+						{...register('defense', { ...defaultOptions, valueAsNumber: true })}
 						id='spill_balls'
-						size={5}>
+						size={5}
+					>
 						<option value={0}>0</option>
 						<option value={1}>1</option>
 						<option value={2}>2</option>
@@ -134,7 +170,9 @@ const ScoutingForm = () => {
 				</Field>
 				<Field>
 					<label>End Position</label>
-					<Select {...register('end_position', { ...defaultOptions, valueAsNumber: true })}>
+					<Select
+						{...register('end_position', { ...defaultOptions, valueAsNumber: true })}
+					>
 						<option value={0}>Nothing</option>
 						<option value={1}>Parked</option>
 						<option value={2}>Buddy climb got lifted</option>

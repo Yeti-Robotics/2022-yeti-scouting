@@ -44,9 +44,6 @@ export const Field = styled.div`
 		height: 30vh;
 		font-size: 1rem;
 	}
-
-
-
 `;
 
 export const Input = styled.input`

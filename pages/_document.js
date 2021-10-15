@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-document-import-in-page */
 /* eslint-disable react/display-name */
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
