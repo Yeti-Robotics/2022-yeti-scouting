@@ -133,13 +133,13 @@ export const HoriSelect = styled.select`
 export const ScoreInputStyles = styled.div`
 	position: relative;
 	margin: 25px 40px 0 40px;
-	width: 70%;
+	width: 55%;
 
 	button {
 		display: grid;
 		place-items: center;
 		height: 100%;
-		width: 40px;
+		width: 60px;
 		font-size: 2rem;
 		margin: 0;
 		padding: 15px;
@@ -150,6 +150,7 @@ export const ScoreInputStyles = styled.div`
 		background-color: ${colors.primary};
 		transition: background-color 0.3s ease;
 		cursor: pointer;
+		touch-action: manipulation;
 
 		&:focus {
 			outline: 4px solid lightblue;

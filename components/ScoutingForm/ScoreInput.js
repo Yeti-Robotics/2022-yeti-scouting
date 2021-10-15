@@ -15,9 +15,9 @@ const ScoreInput = ({ label, name, control, ...inputProps }) => {
             <>
             <label>{label}</label>
             <ScoreInputStyles>
-                <button style={{ left: -40, borderRadius: '3px 0 0 3px' }} type='button' disabled={value < 1} onClick={() => onChange(value - 1)}>-</button>
+                <button style={{ left: -60, borderRadius: '3px 0 0 3px' }} type='button' disabled={value < 1} onClick={() => onChange(value - 1)}>-</button>
                 <input type='number' name={name} value={value} ref={ref} disabled {...inputProps} />
-                <button style={{ right: -40 }} type='button' onClick={() => onChange(value + 1)}>+</button> 
+                <button style={{ right: -60 }} type='button' onClick={() => onChange(value + 1)}>+</button> 
             </ScoreInputStyles>
             </>
             )}
