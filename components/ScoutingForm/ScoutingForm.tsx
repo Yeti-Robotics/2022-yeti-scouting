@@ -54,6 +54,7 @@ const ScoutingForm = () => {
 						{...register('preload', { ...defaultOptions, valueAsNumber: true })}
 						id='preload'
 						size={4}
+						defaultValue={0}
 					>
 						<option value={0}>0</option>
 						<option value={1}>1</option>
@@ -107,6 +108,7 @@ const ScoutingForm = () => {
 						{...register('spill_balls', { ...defaultOptions, valueAsNumber: true })}
 						id='spill_balls'
 						size={3}
+						defaultValue={0}
 					>
 						<option value={0}>None</option>
 						<option value={1}>Some balls</option>
@@ -158,6 +160,7 @@ const ScoutingForm = () => {
 						{...register('defense', { ...defaultOptions, valueAsNumber: true })}
 						id='spill_balls'
 						size={5}
+						defaultValue={0}
 					>
 						<option value={0}>0</option>
 						<option value={1}>1</option>
@@ -172,6 +175,7 @@ const ScoutingForm = () => {
 					<label>End Position</label>
 					<Select
 						{...register('end_position', { ...defaultOptions, valueAsNumber: true })}
+						defaultValue={0}
 					>
 						<option value={0}>Nothing</option>
 						<option value={1}>Parked</option>

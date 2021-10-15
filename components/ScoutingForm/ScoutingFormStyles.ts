@@ -88,10 +88,11 @@ export const Submit = styled.input`
 export const Select = styled.select`
 	width: 90%;
 	border-radius: 10px;
-	height: 50px;
+	height: 60px;
+	cursor: pointer;
 
 	&:focus {
-		outline: 4px blue !important;
+		outline: 4px solid ${colors.primary} !important;
 	}
 `;
 
