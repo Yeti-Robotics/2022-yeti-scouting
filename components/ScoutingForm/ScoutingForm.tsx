@@ -17,6 +17,7 @@ const ScoutingForm = () => {
 		<form
 			onSubmit={handleSubmit((data) => {
 				console.log(data);
+				fetch('/api/submit-form', { method: 'POST', body: JSON.stringify(data) });
 			})}
 			style={{ width: 'clamp(300px, 2400px, 100%)', display: 'grid', placeItems: 'center' }}
 		>

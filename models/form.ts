@@ -2,7 +2,7 @@ import { model, models, Schema } from 'mongoose';
 
 const formSchema = new Schema(
 	{
-		id: { type: Number, required: true },
+		id: { type: Number, index: { unique: true, sparse: true } },
 		auto_low_missed_balls: { type: Number, required: true },
 		auto_low_scored_balls: { type: Number, required: true },
 		auto_upper_missed_balls: { type: Number, required: true },
@@ -12,9 +12,7 @@ const formSchema = new Schema(
 		defense: { type: Number, required: true },
 		end_position: { type: Number, required: true },
 		match_number: { type: Number, required: true },
-		position_control: { type: Boolean, required: true },
 		preload: { type: Number, required: true },
-		rotation_control: { type: Boolean, required: true },
 		scouter: { type: String, required: true },
 		spill_balls: { type: Number, required: true },
 		team_number: { type: Number, required: true },

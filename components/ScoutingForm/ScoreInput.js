@@ -15,11 +15,11 @@ const ScoreInput = ({ label, name, control, ...inputProps }) => {
 					<label>{label}</label>
 					<ScoreInputStyles>
 						<button
-							style={{ left: -60, borderRadius: '3px 0 0 3px' }}
+							style={{ left: -40, borderRadius: '3px 0 0 3px' }}
 							type='button'
 							disabled={value < 1}
 							// eslint-disable-next-line prettier/prettier
-                            onClick={() => onChange(value - 1)}
+							onClick={() => onChange(value - 1)}
 						>
 							-
 						</button>
@@ -32,7 +32,7 @@ const ScoreInput = ({ label, name, control, ...inputProps }) => {
 							{...inputProps}
 						/>
 						<button
-							style={{ right: -60 }}
+							style={{ right: -40 }}
 							type='button'
 							onClick={() => onChange(value + 1)}
 						>

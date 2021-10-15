@@ -14,13 +14,7 @@ export const Section = styled.div`
 		margin: 0;
 		padding: 20px 10px 20px 10px;
 		background: rgb(0, 0, 0);
-		background: linear-gradient(
-			360deg,
-			rgba(0, 0, 0, 1) 0%,
-			rgba(78, 78, 78, 1) 0%,
-			rgba(94, 94, 94, 1) 14%,
-			rgba(234, 234, 234, 1) 100%
-		);
+		background: linear-gradient(360deg, rgba(94, 94, 94, 1) 0%, rgba(234, 234, 234, 1) 100%);
 		border-bottom: 4px solid #000000;
 		border-radius: 10px 10px 0 0;
 	}
@@ -35,7 +29,7 @@ export const Field = styled.div`
 	margin: 25px 0 0 0;
 
 	label {
-		font-size: 2rem;
+		font-size: 1.5rem;
 		width: 95%;
 	}
 
@@ -59,7 +53,7 @@ export const Input = styled.input`
 	}
 
 	&:focus {
-		outline: none;
+		outline: 4px solid lightblue;
 		border-color: blue;
 	}
 `;
@@ -72,13 +66,7 @@ export const Submit = styled.input`
 	font-weight: bold;
 	box-shadow: ${colors.defaultShadow};
 	background: rgb(0, 0, 0);
-	background: linear-gradient(
-		360deg,
-		rgba(0, 0, 0, 1) 0%,
-		rgba(78, 78, 78, 1) 0%,
-		rgba(94, 94, 94, 1) 14%,
-		rgba(234, 234, 234, 1) 100%
-	);
+	background: linear-gradient(360deg, rgba(94, 94, 94, 1) 0%, rgba(234, 234, 234, 1) 100%);
 
 	&:focus {
 		outline: none;
@@ -88,11 +76,12 @@ export const Submit = styled.input`
 export const Select = styled.select`
 	width: 90%;
 	border-radius: 10px;
-	height: 60px;
+	height: 40px;
 	cursor: pointer;
+	font-size: 1rem;
 
 	&:focus {
-		outline: 4px solid ${colors.primary} !important;
+		outline: 4px solid lightblue !important;
 	}
 `;
 
@@ -100,8 +89,8 @@ export const HoriSelect = styled.select`
 	margin: 25px 0 0 0 !important;
 	font-size: 1rem !important;
 	overflow-y: hidden !important;
-	cursor: pointer !important;
-	border: 2px solid #000000 !important;
+	cursor: pointer;
+	border: 2px solid #000000;
 	border-radius: 10px !important;
 	width: auto !important;
 
@@ -114,7 +103,7 @@ export const HoriSelect = styled.select`
 		option {
 			display: table-cell !important;
 			padding: 12.5px 3vw 12.5px 3vw !important;
-			border-right: 2px solid #000000 !important;
+			border-right: 2px solid #000000;
 		}
 	}
 
@@ -132,13 +121,15 @@ export const ScoreInputStyles = styled.div`
 	position: relative;
 	margin: 25px 40px 0 40px;
 	width: 55%;
+	height: 40px;
 
 	button {
 		display: grid;
 		place-items: center;
 		height: 100%;
-		width: 60px;
-		font-size: 2rem;
+		width: 40px;
+		font-size: 0.8rem;
+		font-weight: bold;
 		margin: 0;
 		padding: 15px;
 		border: 0;
@@ -165,7 +156,7 @@ export const ScoreInputStyles = styled.div`
 		width: 100%;
 		height: 100%;
 		padding: 15px;
-		font-size: 1.5rem;
+		font-size: 1rem;
 		border-radius: 0;
 		border-right: 0;
 		border-left: 0;
@@ -173,8 +164,8 @@ export const ScoreInputStyles = styled.div`
 `;
 
 export const Checkbox = styled.input`
-	width: 100px;
-	height: 100px;
+	width: 40px;
+	height: 40px;
 	border: 5px dotted #000000;
 	cursor: pointer;
 `;
