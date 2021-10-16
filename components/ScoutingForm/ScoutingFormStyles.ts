@@ -14,7 +14,7 @@ export const Section = styled.div`
 		margin: 0;
 		padding: 20px 10px 20px 10px;
 		background: rgb(0, 0, 0);
-		background: linear-gradient(360deg, rgba(94, 94, 94, 1) 0%, rgba(234, 234, 234, 1) 100%);
+		background: #eaeaea;
 		border-bottom: 2px solid #000000;
 		border-radius: 10px 10px 0 0;
 	}
@@ -46,8 +46,9 @@ export const Input = styled.input`
 	padding: 15px;
 	border: 2px solid #000000;
 	border-radius: 10px;
-	font-size: 1.5rem;
+	font-size: 1rem;
 	transition: border-color 0.3s ease, background-color 0.3s ease;
+	margin: 15px 0 0 0;
 
 	&:hover {
 		border-color: blue;
@@ -67,7 +68,7 @@ export const Submit = styled.input`
 	font-weight: bold;
 	box-shadow: ${colors.defaultShadow};
 	background: rgb(0, 0, 0);
-	background: linear-gradient(360deg, rgba(94, 94, 94, 1) 0%, rgba(234, 234, 234, 1) 100%);
+	background: ${colors.primary};
 
 	&:focus {
 		outline: none;

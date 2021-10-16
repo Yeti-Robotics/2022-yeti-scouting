@@ -36,7 +36,7 @@ const Modal: React.FC<ModalProps> = ({
 		<ModalWrapper ref={ref} style={style}>
 			<div style={innerStyle}>
 				{children}
-				<ModalButton type='button' style={buttonStyle}>
+				<ModalButton type='button' onClick={() => setVisible(false)} style={buttonStyle}>
 					{buttonText}
 				</ModalButton>
 			</div>

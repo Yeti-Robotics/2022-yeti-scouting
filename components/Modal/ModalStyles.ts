@@ -16,6 +16,7 @@ export const ModalWrapper = styled.div`
 	font-size: 1rem;
 	z-index: 1;
 	cursor: pointer;
+	background-color: white;
 `;
 
 export const ModalButton = styled.button`

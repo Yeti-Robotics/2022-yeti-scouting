@@ -10,7 +10,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		const { username } = JSON.parse(req.body);
 		const exists = (await User.findOne({ username: username }).exec()) !== null;
 		if (!exists) {
-			return res.redirect(200, '/api/users/register');
+			return res.status(200).json({ message: '/api/user/register', error: false });
 		}
 		return res
 			.status(200)
