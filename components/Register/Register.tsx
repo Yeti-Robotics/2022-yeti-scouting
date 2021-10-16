@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Field, Input, Section, Submit } from '../ScoutingForm/ScoutingFormStyles';
+import { Field, Input, Invalid, Section, Submit } from '../ScoutingForm/ScoutingFormStyles';
 import { useForm } from 'react-hook-form';
 import { User } from '@/models/user';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -21,7 +21,11 @@ const schema = Yup.object().shape({
 });
 
 const Register = () => {
-	const { register, handleSubmit } = useForm<User & { confirmPass: string }>({
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<User & { confirmPass: string }>({
 		resolver: yupResolver(schema),
 	});
 
@@ -56,14 +60,17 @@ const Register = () => {
 						{...register('teamNumber', { ...defaultOptions, maxLength: 4 })}
 						id='teamNumber'
 					/>
+					{errors.teamNumber?.message && <Invalid>Team number invalid</Invalid>}
 				</Field>
 				<Field>
 					<label>First Name (min length of 2):</label>
 					<Input {...register('firstName', defaultOptions)} id='firstName' />
+					{errors.firstName?.message && <Invalid>Password invalid</Invalid>}
 				</Field>
 				<Field>
 					<label>Last Name (min length of 2):</label>
 					<Input {...register('lastName', defaultOptions)} id='lastName' />
+					{errors.lastName?.message && <Invalid>Last name invalid</Invalid>}
 				</Field>
 				<Field>
 					<label>Username (min length of 4):</label>
@@ -71,6 +78,7 @@ const Register = () => {
 						{...register('username', { ...defaultOptions, minLength: 4 })}
 						id='username'
 					/>
+					{errors.username?.message && <Invalid>Username invalid</Invalid>}
 				</Field>
 				<Field>
 					<label>Password (min length of 4):</label>
@@ -79,10 +87,12 @@ const Register = () => {
 						type='password'
 						id='password'
 					/>
+					{errors.password?.message && <Invalid>Password invalid</Invalid>}
 				</Field>
 				<Field>
-					<label>Last Name:</label>
+					<label>Confirm Password:</label>
 					<Input {...register('confirmPass')} type='password' />
+					{errors.confirmPass?.message && <Invalid>Passwords must match</Invalid>}
 				</Field>
 			</Section>
 			<Submit type='submit' />

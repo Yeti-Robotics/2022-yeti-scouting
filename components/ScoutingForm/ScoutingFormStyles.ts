@@ -188,3 +188,8 @@ export const Modal = styled.div`
 		margin: 0 30px 0 0;
 	}
 `;
+
+export const Invalid = styled.p`
+	color: red;
+	font-size: 0.8rem;
+`;
