@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form } from '@/models/form';
 import { Checkbox, Field, Input, HoriSelect, Section, Submit, Select } from './ScoutingFormStyles';
 import ScoreInput from './ScoreInput';
+import StatusModal from './StatusModal';
 
 const defaultOptions = {
 	required: true,
@@ -12,15 +13,20 @@ const defaultOptions = {
 
 const ScoutingForm = () => {
 	const { register, handleSubmit, control } = useForm<Form>();
+	const [lastForm, setLastForm] = useState<{ message: string; id?: string; error: boolean }>();
 
 	return (
 		<form
 			onSubmit={handleSubmit((data) => {
 				console.log(data);
-				fetch('/api/submit-form', { method: 'POST', body: JSON.stringify(data) });
+				fetch('/api/submit-form', { method: 'POST', body: JSON.stringify(data) })
+					.then((res) => res.json())
+					.then((json) => setLastForm(json));
 			})}
 			style={{ width: 'clamp(300px, 2400px, 100%)', display: 'grid', placeItems: 'center' }}
 		>
+			<StatusModal submitted={lastForm} setSubmitted={setLastForm} />
+
 			{/* Match Info */}
 			<Section>
 				<h1>Match Info</h1>

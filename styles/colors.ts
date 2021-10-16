@@ -8,4 +8,5 @@ export const colors = {
 	shadow: '#0000001f',
 	light: '#eaeaea',
 	defaultShadow: '0px 0px 16px 4px #0000001f',
+	fonts: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
 };

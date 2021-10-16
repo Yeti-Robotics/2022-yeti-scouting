@@ -15,7 +15,7 @@ export const Section = styled.div`
 		padding: 20px 10px 20px 10px;
 		background: rgb(0, 0, 0);
 		background: linear-gradient(360deg, rgba(94, 94, 94, 1) 0%, rgba(234, 234, 234, 1) 100%);
-		border-bottom: 4px solid #000000;
+		border-bottom: 2px solid #000000;
 		border-radius: 10px 10px 0 0;
 	}
 `;
@@ -37,6 +37,7 @@ export const Field = styled.div`
 		width: 90%;
 		height: 30vh;
 		font-size: 1rem;
+		font-family: ${colors.fonts};
 	}
 `;
 
@@ -78,7 +79,7 @@ export const Select = styled.select`
 	border-radius: 10px;
 	height: 40px;
 	cursor: pointer;
-	font-size: 1rem;
+	font-size: 1.2rem;
 
 	&:focus {
 		outline: 4px solid lightblue !important;
@@ -86,33 +87,33 @@ export const Select = styled.select`
 `;
 
 export const HoriSelect = styled.select`
-	margin: 25px 0 0 0 !important;
-	font-size: 1rem !important;
-	overflow-y: hidden !important;
+	margin: 25px 0 0 0;
+	font-size: 1rem;
+	overflow-y: hidden;
 	cursor: pointer;
 	border: 2px solid #000000;
-	border-radius: 10px !important;
-	width: auto !important;
+	border-radius: 10px;
+	width: auto;
 
 	@media only screen and (min-width: 400px) {
-		display: table-row !important;
-		font-size: 3vw !important;
-		height: calc(3vw + 35px) !important;
-		appearance: none !important;
+		display: table-row;
+		font-size: 3vw;
+		height: calc(3vw + 35px);
+		appearance: none;
 
 		option {
-			display: table-cell !important;
-			padding: 12.5px 3vw 12.5px 3vw !important;
+			display: table-cell;
+			padding: 12.5px 3vw 12.5px 3vw;
 			border-right: 2px solid #000000;
 		}
 	}
 
 	option {
-		padding: 1rem !important;
-		transition: background-color 0.3s ease !important;
+		padding: 1rem;
+		transition: background-color 0.3s ease;
 
 		&:hover {
-			background-color: ${colors.primary} !important;
+			background-color: ${colors.primary};
 		}
 	}
 `;
@@ -168,4 +169,22 @@ export const Checkbox = styled.input`
 	height: 40px;
 	border: 5px dotted #000000;
 	cursor: pointer;
+`;
+
+export const Modal = styled.div`
+	position: fixed;
+	top: -400px;
+	transition: top 0.3s ease;
+	display: flex;
+	align-items: center;
+	padding: 15px;
+	margin: 0 5px 0 5px;
+	border: 2px solid #000000;
+	border-radius: 10px;
+	z-index: 1;
+	cursor: pointer;
+
+	svg {
+		margin: 0 30px 0 0;
+	}
 `;
