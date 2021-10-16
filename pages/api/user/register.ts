@@ -17,8 +17,15 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 			teamNumber,
 			password: await bcrypt.hash(password, salt),
 		});
+		await user.save().catch((err: unknown) => {
+			console.error(err);
+			res.status(500).json({
+				message: 'There was an error creating your account',
+				error: true,
+			});
+		});
 
-		return res.status(200).json({ message: 'Form succesfully saved.', error: false });
+		return res.status(200).json({ message: 'Account succesfully created.', error: false });
 	} catch (err) {
 		return handleError(res, err);
 	}

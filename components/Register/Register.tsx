@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Field, Input, Section, Submit } from '../ScoutingForm/ScoutingFormStyles';
 import { useForm } from 'react-hook-form';
 import { User } from '@/models/user';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import Modal from '../Modal';
 
 const defaultOptions = {
 	required: true,
@@ -20,12 +21,32 @@ const schema = Yup.object().shape({
 });
 
 const Register = () => {
-	const { register } = useForm<User & { confirmPass: string }>({
+	const { register, handleSubmit } = useForm<User & { confirmPass: string }>({
 		resolver: yupResolver(schema),
 	});
 
+	const [modal, setModal] = useState(false);
+
 	return (
-		<form>
+		<form
+			onSubmit={handleSubmit((data) => {
+				console.log(data);
+				fetch('/api/user/validate-username', {
+					method: 'POST',
+					body: JSON.stringify(data),
+				}).then(async (res) => {
+					const json = await res.json();
+					if (json.exists) {
+						setModal(true);
+					} else {
+						console.log('user created');
+					}
+				});
+			})}
+			style={{ display: 'grid', placeItems: 'center' }}
+		>
+			<Modal state={[modal, setModal]} />
+
 			<Section>
 				<h1>Register</h1>
 
@@ -63,9 +84,8 @@ const Register = () => {
 					<label>Last Name:</label>
 					<Input {...register('confirmPass')} type='password' />
 				</Field>
-
-				<Submit type='submit' />
 			</Section>
+			<Submit type='submit' />
 		</form>
 	);
 };

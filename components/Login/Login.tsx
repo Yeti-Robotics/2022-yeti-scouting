@@ -14,13 +14,14 @@ const Login: React.FC = () => {
 		<form
 			onSubmit={handleSubmit((data) => {
 				console.log(data);
-				fetch('api/login', {
-					method: 'POST',
-					body: JSON.stringify({ ...data, administator: false }),
-				})
-					.then((res) => res.json())
-					.then((json) => {});
+				// fetch('api/user/login', {
+				// 	method: 'POST',
+				// 	body: JSON.stringify({ ...data, administator: false }),
+				// })
+				// 	.then((res) => res.json())
+				// 	.then((json) => {});
 			})}
+			style={{ display: 'grid', placeItems: 'center' }}
 		>
 			<Section>
 				<h1>Login</h1>
@@ -37,9 +38,8 @@ const Login: React.FC = () => {
 						id='password'
 					/>
 				</Field>
-
-				<Submit type='submit' />
 			</Section>
+			<Submit type='submit' />
 		</form>
 	);
 };
