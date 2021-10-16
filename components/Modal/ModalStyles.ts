@@ -15,8 +15,8 @@ export const ModalWrapper = styled.div`
 	border-radius: 10px;
 	font-size: 1rem;
 	z-index: 1;
-	cursor: pointer;
 	background-color: white;
+	box-shadow: ${colors.defaultShadow};
 `;
 
 export const ModalButton = styled.button`
@@ -26,7 +26,9 @@ export const ModalButton = styled.button`
 	place-items: center;
 	font-size: 1rem;
 	background-color: ${colors.primary};
-	transition: outline 0.3s ease;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
 
 	&:hover {
 		outline: 4px solid blue;

@@ -5,19 +5,11 @@ import { ModalButton, ModalWrapper } from './ModalStyles';
 interface ModalProps {
 	state: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 	style?: React.CSSProperties;
-	innerStyle?: React.CSSProperties;
 	buttonStyle?: React.CSSProperties;
 	buttonText?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({
-	state,
-	style,
-	innerStyle,
-	buttonStyle,
-	buttonText,
-	children,
-}) => {
+const Modal: React.FC<ModalProps> = ({ state, style, buttonStyle, buttonText, children }) => {
 	const [visible, setVisible] = state;
 	const ref = useClickedOutside(undefined, () => {
 		setVisible(false);
@@ -26,7 +18,7 @@ const Modal: React.FC<ModalProps> = ({
 	useEffect(() => {
 		if (!ref.current) return;
 		if (visible) {
-			ref.current.style.top = '120px';
+			ref.current.style.top = '150px';
 		} else {
 			ref.current.style.top = '-500px';
 		}
@@ -34,12 +26,10 @@ const Modal: React.FC<ModalProps> = ({
 
 	return (
 		<ModalWrapper ref={ref} style={style}>
-			<div style={innerStyle}>
-				{children}
-				<ModalButton type='button' onClick={() => setVisible(false)} style={buttonStyle}>
-					{buttonText}
-				</ModalButton>
-			</div>
+			{children}
+			<ModalButton type='button' onClick={() => setVisible(false)} style={buttonStyle}>
+				{buttonText}
+			</ModalButton>
 		</ModalWrapper>
 	);
 };
