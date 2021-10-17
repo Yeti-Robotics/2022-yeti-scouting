@@ -44,7 +44,6 @@ const Register = () => {
 	return (
 		<form
 			onSubmit={handleSubmit((data) => {
-				console.log(data);
 				fetch('/api/user/validate-username', {
 					method: 'POST',
 					body: JSON.stringify(data),
