@@ -3,7 +3,7 @@ import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
 const connectDB =
 	(handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
-		const uri = String(process.env.DB_URI);
+		const uri = process.env.DB_URI;
 		if (!uri) {
 			console.log('No URI, could not connect to DB.');
 			return;
@@ -13,7 +13,9 @@ const connectDB =
 			return handler(req, res);
 		}
 		//use a new connection
-		await mongoose.connect(uri).catch((err: unknown) => console.error(err));
+		await mongoose
+			.connect(uri, { authSource: 'scouting' })
+			.catch((err: unknown) => console.error(err));
 		return handler(req, res);
 	};
 
