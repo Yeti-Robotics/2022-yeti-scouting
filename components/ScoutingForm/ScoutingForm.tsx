@@ -80,7 +80,7 @@ const schema = Yup.object().shape({
 		.typeError('Must be a number'),
 	defense: Yup.number()
 		.min(0, 'Must be above -1')
-		.max(2, 'Must be below 5')
+		.max(4, 'Must be below 5')
 		.required('This field is required')
 		.typeError('Must be a number'),
 	comment: Yup.string().max(500, 'Max of 500 characters').required('This field is required'),
