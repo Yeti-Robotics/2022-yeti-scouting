@@ -37,7 +37,7 @@ const Login: React.FC = () => {
 
 				if (res.status === 400) return setModal(true);
 				if (res.status > 400) return;
-				router.push(router.query.from || '/');
+				router.push(router.query.from ? String(router.query.from) : '/');
 			})}
 			style={{ display: 'grid', placeItems: 'center' }}
 		>
