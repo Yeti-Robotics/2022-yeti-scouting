@@ -21,11 +21,12 @@ const Home: NextPage = () => {
 
 	return (
 		<Layout>
-			<h1>scouting</h1>
+			<h1>scouting (PH)</h1>
 			<div>
 				{data.map((team) => (
 					<p key={team.teamNumber}>
-						{team.teamNumber} {team.team_name}
+						#: {team.teamNumber} name: {team.team_name} avg upper auto:{' '}
+						{team.avgUpperAuto} position control: {team.positionControl}
 					</p>
 				))}
 			</div>
