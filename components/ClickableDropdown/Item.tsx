@@ -9,6 +9,7 @@ import {
 	Child,
 } from './ClickableDropdownStyles';
 import { colors } from '@/styles/colors';
+import { Router, useRouter } from 'next/router';
 
 interface ClickableDropDownItemProps {
 	item: {
@@ -26,6 +27,7 @@ interface ClickableDropDownItemProps {
 const ClickableDropdownItem: React.FC<ClickableDropDownItemProps> = ({ item, currId, id }) => {
 	const [thisOpen, setThisOpen] = useState(false);
 	const [opened, setOpened] = currId;
+	const router = useRouter();
 	const parentButtonRef = useRef<HTMLDivElement>(null);
 	const isDonate = item.title === 'Donate';
 
@@ -85,11 +87,14 @@ const ClickableDropdownItem: React.FC<ClickableDropDownItemProps> = ({ item, cur
 							<div>
 								{item.children.map((child, index) => (
 									<div key={index}>
-										<Link href={child.href} passHref>
-											<Child onClick={(e) => e.stopPropagation()}>
-												{child.title}
-											</Child>
-										</Link>
+										<Child
+											onClick={(e) => {
+												e.stopPropagation();
+												router.push(child.href);
+											}}
+										>
+											{child.title}
+										</Child>
 									</div>
 								))}
 							</div>

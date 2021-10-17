@@ -22,13 +22,13 @@ const Home: NextPage = () => {
 	return (
 		<Layout>
 			<h1>scouting</h1>
-			<p>
+			<div>
 				{data.map((team) => (
 					<p key={team.teamNumber}>
 						{team.teamNumber} {team.team_name}
 					</p>
 				))}
-			</p>
+			</div>
 		</Layout>
 	);
 };

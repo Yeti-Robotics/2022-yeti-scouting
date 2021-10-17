@@ -6,8 +6,10 @@ import Icicles from '../Icicles';
 import Link from 'next/link';
 import { HeaderContext } from './Context';
 import { colors } from '@/styles/colors';
+import useUser from '@/hooks/useUser';
 
 const Header: React.FC = () => {
+	const { user } = useUser();
 	const { showHeader, clickableDropdownShown } = useContext(HeaderContext);
 	const showHeaderCB = useCallback(() => {
 		if (!clickableDropdownShown) {
@@ -61,8 +63,8 @@ const Header: React.FC = () => {
 								children: [],
 							},
 							{
-								title: 'Login',
-								href: '/login',
+								title: user?.isLoggedIn ? 'Logout' : 'Login',
+								href: user?.isLoggedIn ? '/api/logout' : '/login',
 								children: [],
 							},
 						]}

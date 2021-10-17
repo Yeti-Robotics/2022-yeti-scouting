@@ -48,7 +48,7 @@ export const TitleWrapper = styled.a`
 	align-items: center;
 `;
 
-export const Title = styled.a`
+export const Title = styled.p`
 	padding-left: 5px;
 	padding-right: 5px;
 `;
@@ -81,7 +81,7 @@ export const ChildrenMenu = styled.div`
 	width: 100%;
 `;
 
-export const Child = styled.a`
+export const Child = styled.div`
 	display: flex;
 	flex-grow: 1;
 	position: relative;
