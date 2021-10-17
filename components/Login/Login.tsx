@@ -29,17 +29,15 @@ const Login: React.FC = () => {
 
 	return (
 		<form
-			onSubmit={handleSubmit((data) => {
-				console.log(data);
-				fetch('api/user/login', {
+			onSubmit={handleSubmit(async (data) => {
+				const res = await fetch('api/user/login', {
 					method: 'POST',
 					body: JSON.stringify(data),
-				})
-					.then(async (res) => {
-						if (res.status === 400) return setModal(true);
-						if (res.status > 400) return;
-					})
-					.finally(() => router.push(router.query.from || '/'));
+				});
+
+				if (res.status === 400) return setModal(true);
+				if (res.status > 400) return;
+				router.push(router.query.from || '/');
 			})}
 			style={{ display: 'grid', placeItems: 'center' }}
 		>

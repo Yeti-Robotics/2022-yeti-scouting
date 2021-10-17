@@ -4,6 +4,7 @@ import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 const authenticate =
 	(handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
 		try {
+			res.setHeader('Chache-Control', 'no-store');
 			const token = req.cookies['jwt'];
 			if (token == null) return res.status(401).json({ isLoggedIn: false });
 

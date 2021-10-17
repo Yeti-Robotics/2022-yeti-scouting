@@ -69,6 +69,7 @@ export const Submit = styled.input`
 	box-shadow: ${colors.defaultShadow};
 	background: rgb(0, 0, 0);
 	background: ${colors.primary};
+	cursor: pointer;
 
 	&:focus {
 		outline: none;

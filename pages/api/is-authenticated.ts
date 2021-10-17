@@ -2,6 +2,7 @@ import authenticate from '@/middleware/authenticate';
 import { NextApiHandler } from 'next';
 
 const handler: NextApiHandler = (req, res) => {
+	res.setHeader('Chache-Control', 'no-store');
 	const { username, administrator, teamNumber, firstName, lastName } = JSON.parse(req.body);
 	return res
 		.status(200)
