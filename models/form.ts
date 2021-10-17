@@ -20,7 +20,7 @@ const formSchema = new Schema(
 		teleop_low_scored_balls: { type: Number, required: true },
 		teleop_upper_missed_balls: { type: Number, required: true },
 		teleop_upper_scored_balls: { type: Number, required: true },
-		timestamp: { type: String, default: Date.now().toString() },
+		timestamp: { type: Date, default: Date.now() },
 	},
 	{ collection: 'form' },
 );
