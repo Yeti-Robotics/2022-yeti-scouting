@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import connectDB from '@/middleware/database';
+import authenticate from '@/middleware/authenticate';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import Form from '@/models/form';
 import { teamDataAggregation } from '@/models/aggregations/team-data';
@@ -16,4 +17,4 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 	}
 };
 
-export default connectDB(handler);
+export default authenticate(connectDB(handler));

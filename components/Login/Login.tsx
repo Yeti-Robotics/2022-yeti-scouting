@@ -1,42 +1,60 @@
-import React from 'react';
-import { Field, Input, Section, Submit } from '../ScoutingForm/ScoutingFormStyles';
+import React, { useState } from 'react';
+import { Field, Input, Invalid, Section, Submit } from '../ScoutingForm/ScoutingFormStyles';
 import { useForm } from 'react-hook-form';
 import { User } from '@/models/user';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
+import Modal from '../Modal';
 
-const defaultOptions = {
-	required: true,
-};
+const schema = Yup.object().shape({
+	username: Yup.string()
+		.min(4, 'Must have at least 4 characters')
+		.required('This field is required'),
+	password: Yup.string()
+		.min(4, 'Must have at least 4 characters')
+		.required('This field is required'),
+});
 
 const Login: React.FC = () => {
-	const { register, handleSubmit } = useForm<User>();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<User>({
+		resolver: yupResolver(schema),
+	});
+	const [modal, setModal] = useState(false);
+	const router = useRouter();
 
 	return (
 		<form
 			onSubmit={handleSubmit((data) => {
 				console.log(data);
-				// fetch('api/user/login', {
-				// 	method: 'POST',
-				// 	body: JSON.stringify({ ...data, administator: false }),
-				// })
-				// 	.then((res) => res.json())
-				// 	.then((json) => {});
+				fetch('api/user/login', {
+					method: 'POST',
+					body: JSON.stringify(data),
+				}).then(async (res) => {
+					if (res.status === 400) return setModal(true);
+					if (res.status > 400) return;
+					router.push('scouting');
+				});
 			})}
 			style={{ display: 'grid', placeItems: 'center' }}
 		>
+			<Modal state={[modal, setModal]}>Username or password is incorrect.</Modal>
 			<Section>
 				<h1>Login</h1>
 
 				<Field>
 					<label>Username:</label>
-					<Input {...register('username', defaultOptions)} id='username' />
+					<Input {...register('username')} id='username' />
+					{errors.username?.message && <Invalid>{errors.username?.message}</Invalid>}
 				</Field>
 				<Field>
 					<label>Password:</label>
-					<Input
-						{...register('password', defaultOptions)}
-						type='password'
-						id='password'
-					/>
+					<Input {...register('password')} type='password' id='password' />
+					{errors.password?.message && <Invalid>{errors.password?.message}</Invalid>}
 				</Field>
 			</Section>
 			<Submit type='submit' />
