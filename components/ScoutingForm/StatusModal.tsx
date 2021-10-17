@@ -15,7 +15,7 @@ const StatusModal: React.FC<StatusModalProps> = ({ submitted }) => {
 		ref.current.style.top = '-400px';
 		setUndoText('');
 	});
-	const timeout = useRef(null);
+	const timeout = useRef(setTimeout(() => {}));
 	const [undoText, setUndoText] = useState('');
 	const [error, setError] = useState<boolean>();
 
@@ -53,7 +53,9 @@ const StatusModal: React.FC<StatusModalProps> = ({ submitted }) => {
 		<>
 			<Modal
 				ref={ref}
-				onClick={error ? () => (ref.current.style.top = '-400px') : onUndo}
+				onClick={
+					error ? () => (ref.current ? (ref.current.style.top = '-400px') : '') : onUndo
+				}
 				style={{ backgroundColor: error ? 'red' : 'green' }}
 				onSubmit={() => {
 					if (!timeout.current) return;
