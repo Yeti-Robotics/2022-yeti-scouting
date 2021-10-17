@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import Loading from '@/components/Loading';
 import ScoutingForm from '@/components/ScoutingForm';
 import useUser from '@/hooks/useUser';
 import { NextPage } from 'next';
@@ -10,7 +11,7 @@ const StandScouting: NextPage = () => {
 	if (!user || !user.isLoggedIn) {
 		return (
 			<Layout>
-				<h1>Loading...</h1>
+				<Loading />
 			</Layout>
 		);
 	}
