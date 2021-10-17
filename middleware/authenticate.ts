@@ -8,7 +8,7 @@ const authenticate =
 			const token = req.cookies['jwt'];
 			if (token == null) return res.status(401).json({ isLoggedIn: false });
 
-			jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+			jwt.verify(token, String(process.env.ACCESS_TOKEN_SECRET), (err, user) => {
 				if (err) return res.status(403).json({ isLoggedIn: false });
 				req.method = 'POST';
 				req.body = JSON.stringify({

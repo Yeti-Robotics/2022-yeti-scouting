@@ -21,10 +21,10 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 			teamNumber: user.teamNumber,
 		};
 		if (await bcrypt.compare(password, user.password)) {
-			const accessToken = jwt.sign(plainUser, process.env.ACCESS_TOKEN_SECRET, {
+			const accessToken = jwt.sign(plainUser, String(process.env.ACCESS_TOKEN_SECRET), {
 				expiresIn: '1h',
 			});
-			const refreshToken = jwt.sign(plainUser, process.env.REFRESH_TOKEN_SECRET);
+			const refreshToken = jwt.sign(plainUser, String(process.env.REFRESH_TOKEN_SECRET));
 			if ((await Token.findOne({ username: username }).exec()) === null) {
 				const token = new Token({ username, refreshToken });
 				await token.save();
