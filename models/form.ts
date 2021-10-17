@@ -2,7 +2,6 @@ import { model, models, Schema } from 'mongoose';
 
 const formSchema = new Schema(
 	{
-		id: { type: Number, index: { unique: true, sparse: true } },
 		auto_low_missed_balls: { type: Number, required: true },
 		auto_low_scored_balls: { type: Number, required: true },
 		auto_upper_missed_balls: { type: Number, required: true },
@@ -20,9 +19,8 @@ const formSchema = new Schema(
 		teleop_low_scored_balls: { type: Number, required: true },
 		teleop_upper_missed_balls: { type: Number, required: true },
 		teleop_upper_scored_balls: { type: Number, required: true },
-		timestamp: { type: Date, default: Date.now() },
 	},
-	{ collection: 'form' },
+	{ collection: 'form', timestamps: true },
 );
 
 export interface Form {
