@@ -13,7 +13,7 @@ const connectDB =
 			return handler(req, res);
 		}
 		//use a new connection
-		await mongoose.connect(uri).catch(() => console.error('error connecting db'));
+		await mongoose.connect(uri).catch((err: unknown) => console.error(err));
 		return handler(req, res);
 	};
 
