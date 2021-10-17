@@ -1,5 +1,5 @@
 import { useClickedOutside } from '@/hooks/useClickedOutside';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Modal } from './ScoutingFormStyles';
 
 interface StatusModalProps {
@@ -15,8 +15,9 @@ const StatusModal: React.FC<StatusModalProps> = ({ submitted }) => {
 		ref.current.style.top = '-400px';
 		setUndoText('');
 	});
+	const timeout = useRef(null);
 	const [undoText, setUndoText] = useState('');
-	const [error, setError] = useState(submitted?.error || false);
+	const [error, setError] = useState<boolean>();
 
 	useEffect(() => {
 		if (!ref.current) return;
@@ -37,11 +38,13 @@ const StatusModal: React.FC<StatusModalProps> = ({ submitted }) => {
 					setError(true);
 				} else {
 					setUndoText('Form successfully deleted.');
+					setError(false);
 				}
-				setTimeout(() => {
+				timeout.current = setTimeout(() => {
 					if (!ref.current) return;
 					ref.current.style.top = '-400px';
 					setUndoText('');
+					setError(false);
 				}, 3000);
 			});
 	};
@@ -52,6 +55,10 @@ const StatusModal: React.FC<StatusModalProps> = ({ submitted }) => {
 				ref={ref}
 				onClick={error ? () => (ref.current.style.top = '-400px') : onUndo}
 				style={{ backgroundColor: error ? 'red' : 'green' }}
+				onSubmit={() => {
+					if (!timeout.current) return;
+					clearTimeout(timeout.current);
+				}}
 			>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
