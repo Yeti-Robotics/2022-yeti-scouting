@@ -16,8 +16,9 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 			username: user.username,
 			password: user.password,
 			firstName: user.firstName,
-			lastName: user.LastName,
-			administator: user.administator,
+			lastName: user.lastName,
+			administrator: user.administrator,
+			teamNumber: user.teamNumber,
 		};
 		if (await bcrypt.compare(password, user.password)) {
 			const accessToken = jwt.sign(plainUser, process.env.ACCESS_TOKEN_SECRET, {

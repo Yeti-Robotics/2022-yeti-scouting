@@ -34,11 +34,12 @@ const Login: React.FC = () => {
 				fetch('api/user/login', {
 					method: 'POST',
 					body: JSON.stringify(data),
-				}).then(async (res) => {
-					if (res.status === 400) return setModal(true);
-					if (res.status > 400) return;
-					router.push('scouting');
-				});
+				})
+					.then(async (res) => {
+						if (res.status === 400) return setModal(true);
+						if (res.status > 400) return;
+					})
+					.finally(() => router.push(router.query.from || '/'));
 			})}
 			style={{ display: 'grid', placeItems: 'center' }}
 		>

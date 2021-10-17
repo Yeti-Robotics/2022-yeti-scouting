@@ -86,7 +86,11 @@ const schema = Yup.object().shape({
 	comment: Yup.string().max(500, 'Max of 500 characters').required('This field is required'),
 });
 
-const ScoutingForm = () => {
+interface ScoutingFormProps {
+	scouter: string;
+}
+
+const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 	const {
 		register,
 		handleSubmit,
@@ -99,7 +103,7 @@ const ScoutingForm = () => {
 	const [lastForm, setLastForm] = useState<{ message: string; id?: string; error: boolean }>();
 
 	const onSubmit = (data: Form) => {
-		fetch('/api/submit-form', { method: 'POST', body: JSON.stringify(data) })
+		fetch('/api/submit-form', { method: 'POST', body: JSON.stringify({ ...data, scouter }) })
 			.then((res) => res.json())
 			.then((json) => setLastForm(json));
 	};

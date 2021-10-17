@@ -3,7 +3,7 @@ import Login from '@/components/Login';
 import { NextPage } from 'next';
 import React from 'react';
 
-const login: NextPage = () => {
+const LoginPage: NextPage = () => {
 	return (
 		<Layout>
 			<Login />
@@ -11,4 +11,4 @@ const login: NextPage = () => {
 	);
 };
 
-export default login;
+export default LoginPage;

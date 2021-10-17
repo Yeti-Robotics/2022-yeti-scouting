@@ -16,6 +16,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 			lastName,
 			teamNumber,
 			password: await bcrypt.hash(password, salt),
+			administrator: false,
 		});
 		await user.save((err: unknown) => {
 			if (err) {

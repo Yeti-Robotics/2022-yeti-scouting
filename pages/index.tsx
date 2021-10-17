@@ -11,20 +11,22 @@ const Home: NextPage = () => {
 	const router = useRouter();
 
 	if (error) router.push('/login');
+	if (!data)
+		return (
+			<Layout>
+				<h1>Loading...</h1>
+			</Layout>
+		);
 
 	return (
 		<Layout>
 			<h1>scouting</h1>
 			<p>
-				{data
-					? data.map((team) => (
-							<p key={team.teamNumber}>
-								{team.teamNumber} {team.team_name}
-							</p>
-					  ))
-					: error
-					? 'error occured'
-					: 'loding'}
+				{data.map((team) => (
+					<p key={team.teamNumber}>
+						{team.teamNumber} {team.team_name}
+					</p>
+				))}
 			</p>
 		</Layout>
 	);
