@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import Loading from '@/components/Loading';
 import fetcher from '@/lib/fetch';
 import { TeamData } from '@/models/aggregations/team-data';
 import type { NextPage } from 'next';
@@ -14,7 +15,7 @@ const Home: NextPage = () => {
 	if (!data)
 		return (
 			<Layout>
-				<h1>Loading...</h1>
+				<Loading />
 			</Layout>
 		);
 
