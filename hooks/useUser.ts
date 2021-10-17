@@ -10,7 +10,7 @@ interface User {
 	isLoggedIn: true;
 }
 
-const useUser = ({ redirectTo = '/login', redirectIfFound = false } = {}) => {
+const useUser = ({ redirectTo = '', redirectIfFound = false, redirectIfNotAdmin = false } = {}) => {
 	const [user, setUser] = useState<User>();
 	const mutateUser = async () => {
 		const res = await fetch('/api/is-authenticated');
@@ -30,7 +30,8 @@ const useUser = ({ redirectTo = '/login', redirectIfFound = false } = {}) => {
 
 		if (
 			(redirectTo && !redirectIfFound && !user?.isLoggedIn) ||
-			(redirectIfFound && user?.isLoggedIn)
+			(redirectIfFound && user?.isLoggedIn) ||
+			(redirectIfNotAdmin && user?.isLoggedIn && !user?.administator)
 		) {
 			Router.push(`${redirectTo}?from=${Router.pathname}`);
 		}

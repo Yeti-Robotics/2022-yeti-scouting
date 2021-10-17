@@ -64,7 +64,7 @@ const Header: React.FC = () => {
 							},
 							{
 								title: user?.isLoggedIn ? 'Logout' : 'Login',
-								href: user?.isLoggedIn ? '/api/logout' : '/login',
+								href: user?.isLoggedIn ? '/logout' : '/login',
 								children: [],
 							},
 						]}
