@@ -39,7 +39,7 @@ const Login: React.FC = () => {
 				if (res.status > 400) return;
 				router.push(router.query.from ? String(router.query.from) : '/');
 			})}
-			style={{ display: 'grid', placeItems: 'center' }}
+			style={{ width: 'clamp(300px, 2400px, 100%)', display: 'grid', placeItems: 'center' }}
 		>
 			<Modal state={[modal, setModal]}>Username or password is incorrect.</Modal>
 			<Section>

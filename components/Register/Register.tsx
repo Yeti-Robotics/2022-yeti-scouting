@@ -56,7 +56,7 @@ const Register = () => {
 					});
 				});
 			})}
-			style={{ display: 'grid', placeItems: 'center' }}
+			style={{ width: 'clamp(300px, 2400px, 100%)', display: 'grid', placeItems: 'center' }}
 		>
 			<Modal state={[modal, setModal]}>
 				<p>This username is already in use</p>
