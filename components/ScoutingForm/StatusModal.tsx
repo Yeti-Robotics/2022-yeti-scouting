@@ -79,7 +79,7 @@ const StatusModal: React.FC<StatusModalProps> = ({ submitted }) => {
 					{error
 						? undoText
 							? undoText
-							: 'There was an error submitting your form'
+							: "There was an error submitting your form, make sure you're logged in"
 						: undoText
 						? undoText
 						: 'Form submitted successfully, click this modal to undo submission.'}

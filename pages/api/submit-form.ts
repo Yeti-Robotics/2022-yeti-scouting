@@ -1,7 +1,8 @@
-import connectDB from '@/middleware/database';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import Form from '@/models/form';
 import handleError from '@/middleware/handle-error';
+import authenticate from '@/middleware/authenticate';
+import connectDB from '@/middleware/database';
 
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 	if (req.method !== 'POST')
@@ -19,4 +20,4 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 	}
 };
 
-export default connectDB(handler);
+export default connectDB(authenticate(handler, false));

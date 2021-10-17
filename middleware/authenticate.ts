@@ -3,7 +3,8 @@ import Token from '@/models/token';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
 const authenticate =
-	(handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
+	(handler: NextApiHandler, sendUser = true) =>
+	async (req: NextApiRequest, res: NextApiResponse) => {
 		try {
 			res.setHeader('Chache-Control', 'no-store');
 			const token = req.cookies['jwt'];
@@ -21,7 +22,9 @@ const authenticate =
 					teamNumber: user?.teamNumber,
 					administrator: user?.administrator,
 				};
-				req.body = JSON.stringify(plainUser);
+				if (sendUser) {
+					req.body = JSON.stringify(plainUser);
+				}
 				return handler(req, res);
 			});
 		} catch (err) {
