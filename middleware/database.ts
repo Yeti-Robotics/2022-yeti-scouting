@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
-const uri = process.env.DB_URI;
-
 const connectDB =
 	(handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
+		const uri = String(process.env.DB_URI);
 		if (!uri) {
 			console.log('No URI, could not connect to DB.');
 			return;
