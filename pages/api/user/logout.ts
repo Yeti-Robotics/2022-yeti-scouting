@@ -13,7 +13,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 			if ((await Token.findOne({ username: user?.username }).exec()) === null) {
 				return res.status(403).json({ isLoggedIn: false });
 			} else {
-				Token.findOneAndDelete({ username: user?.username }, (err) => {
+				Token.findOneAndDelete({ username: user?.username }, (err: unknown) => {
 					if (err) return res.status(403).json({ isLoggedIn: false });
 					res.setHeader(
 						'Set-Cookie',
