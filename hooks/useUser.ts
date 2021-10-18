@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface User {
 	username: string;
@@ -10,19 +10,8 @@ interface User {
 	isLoggedIn: true;
 }
 
-const useUser = ({
-	redirectTo = '',
-	redirectIfFound = false,
-	redirectIfNotAdmin = false,
-	revalidate = undefined,
-}: {
-	redirectTo: string;
-	redirectIfFound: boolean;
-	redirectIfNotAdmin: boolean;
-	revalidate: number | undefined;
-}) => {
+const useUser = ({ redirectTo = '', redirectIfFound = false, redirectIfNotAdmin = false } = {}) => {
 	const [user, setUser] = useState<User>();
-	const interval = useRef(setInterval(() => {}));
 	const getUser = useCallback(async () => {
 		fetch('/api/is-authenticated').then(async (res) => {
 			const json = await res.json();
@@ -36,8 +25,7 @@ const useUser = ({
 	};
 
 	useEffect(() => {
-		interval.current = setInterval(getUser, revalidate);
-		return () => clearInterval(interval.current);
+		getUser();
 	}, []);
 
 	useEffect(() => {
