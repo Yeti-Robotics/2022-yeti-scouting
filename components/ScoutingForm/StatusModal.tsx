@@ -17,7 +17,7 @@ const StatusModal: React.FC<StatusModalProps> = ({ submitted }) => {
 	});
 	const timeout = useRef(setTimeout(() => {}));
 	const [undoText, setUndoText] = useState('');
-	const [error, setError] = useState<boolean>();
+	const [error, setError] = useState(submitted?.error);
 
 	useEffect(() => {
 		if (!ref.current) return;
@@ -79,7 +79,7 @@ const StatusModal: React.FC<StatusModalProps> = ({ submitted }) => {
 					{error
 						? undoText
 							? undoText
-							: "There was an error submitting your form, make sure you're logged in"
+							: submitted?.message
 						: undoText
 						? undoText
 						: 'Form submitted successfully, click this modal to undo submission.'}

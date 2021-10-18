@@ -103,9 +103,20 @@ const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 	const [lastForm, setLastForm] = useState<{ message: string; id?: string; error: boolean }>();
 
 	const onSubmit = (data: Form) => {
-		fetch('/api/submit-form', { method: 'POST', body: JSON.stringify({ ...data, scouter }) })
-			.then((res) => res.json())
-			.then((json) => setLastForm(json));
+		fetch('/api/submit-form', {
+			method: 'POST',
+			body: JSON.stringify({ ...data, scouter }),
+		}).then(async (res) => {
+			if (res.status == 401 || res.status == 403) {
+				console.log('Not authorized');
+				return setLastForm({
+					message: 'You are not logged in',
+					error: true,
+				});
+			}
+			const json = await res.json();
+			setLastForm(json);
+		});
 	};
 
 	return (

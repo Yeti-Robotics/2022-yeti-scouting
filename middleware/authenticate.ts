@@ -8,7 +8,7 @@ const authenticate =
 		try {
 			res.setHeader('Chache-Control', 'no-store');
 			const token = req.cookies['jwt'];
-			if (token == null) return res.status(401).json({ isLoggedIn: false });
+			if (!token) return res.status(401).json({ isLoggedIn: false });
 
 			jwt.verify(token, String(process.env.ACCESS_TOKEN_SECRET), async (err, user) => {
 				if (err) return res.status(403).json({ isLoggedIn: false });
