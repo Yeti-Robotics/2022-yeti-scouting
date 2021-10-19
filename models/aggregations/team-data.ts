@@ -1,11 +1,71 @@
 export const teamDataAggregation = [
 	{
-		// grouping the results by team number
+		$addFields: {
+			autoTotalUpperBalls: {
+				$add: ['$auto_upper_scored_balls', '$auto_upper_missed_balls'],
+			},
+			autoTotalLowerBalls: {
+				$add: ['$auto_low_scored_balls', '$auto_low_missed_balls'],
+			},
+			teleopTotalLowerBalls: {
+				$add: ['$teleop_low_scored_balls', '$teleop_low_missed_balls'],
+			},
+			teleopTotalUpperBalls: {
+				$add: ['$teleop_upper_scored_balls', '$teleop_upper_missed_balls'],
+			},
+		},
+	},
+	{
+		$addFields: {
+			avgUpperAuto: {
+				$cond: [
+					{
+						$eq: ['$autoTotalUpperBalls', 0],
+					},
+					0,
+					{
+						$divide: ['$auto_upper_scored_balls', '$autoTotalUpperBalls'],
+					},
+				],
+			},
+			avgLowerAuto: {
+				$cond: [
+					{
+						$eq: ['$autoTotalLowerBalls', 0],
+					},
+					0,
+					{
+						$divide: ['$auto_low_scored_balls', '$autoTotalLowerBalls'],
+					},
+				],
+			},
+			avgUpperTeleop: {
+				$cond: [
+					{
+						$eq: ['$teleopTotalUpperBalls', 0],
+					},
+					0,
+					{
+						$divide: ['$teleop_upper_scored_balls', '$teleopTotalUpperBalls'],
+					},
+				],
+			},
+			avgLowerTeleop: {
+				$cond: [
+					{
+						$eq: ['$teleopTotalLowerBalls', 0],
+					},
+					0,
+					{
+						$divide: ['$teleop_low_scored_balls', '$teleopTotalLowerBalls'],
+					},
+				],
+			},
+		},
+	},
+	{
 		$group: {
 			_id: '$team_number',
-			avgUpperAuto: {
-				$avg: '$auto_upper_scored_balls',
-			},
 			positionControl: {
 				$avg: {
 					$convert: {
@@ -14,22 +74,31 @@ export const teamDataAggregation = [
 					},
 				},
 			},
+			avgUpperAuto: {
+				$avg: '$avgUpperAuto',
+			},
+			avgLowerAuto: {
+				$avg: '$avgLowerAuto',
+			},
+			avgUpperTeleop: {
+				$avg: '$avgUpperTeleop',
+			},
+			avgLowerTeleop: {
+				$avg: '$avgLowerTeleop',
+			},
 		},
 	},
 	{
-		// adds the teamNumber field
 		$addFields: {
 			teamNumber: '$_id',
 		},
 	},
 	{
-		// sorts in ascending order by teamNumber
 		$sort: {
 			teamNumber: 1,
 		},
 	},
 	{
-		// joining the team based on the teamNumber
 		$lookup: {
 			from: 'team',
 			localField: 'teamNumber',
@@ -38,7 +107,6 @@ export const teamDataAggregation = [
 		},
 	},
 	{
-		// merging the team object with the returned document
 		$replaceRoot: {
 			newRoot: {
 				$mergeObjects: [
@@ -51,10 +119,10 @@ export const teamDataAggregation = [
 		},
 	},
 	{
-		// removing the _id and team fields
 		$project: {
 			_id: 0,
 			team: 0,
+			team_number: 0,
 		},
 	},
 ];
@@ -62,6 +130,9 @@ export const teamDataAggregation = [
 export interface TeamData {
 	team_name: string;
 	avgUpperAuto: number;
+	avgLowerAuto: number;
+	avgUpperTeleop: number;
+	avgLowerTeleop: number;
 	positionControl: number;
 	teamNumber: number;
 }
