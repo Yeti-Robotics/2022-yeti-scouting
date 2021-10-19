@@ -86,6 +86,22 @@ export const teamDataAggregation = [
 			avgLowerTeleop: {
 				$avg: '$avgLowerTeleop',
 			},
+			endPosition: {
+				$avg: '$end_position',
+			},
+		},
+	},
+	{
+		$project: {
+			_id: 1,
+			positionControl: 1,
+			avgUpperAuto: 1,
+			avgLowerAuto: 1,
+			avgUpperTeleop: 1,
+			avgLowerTeleop: 1,
+			endPosition: {
+				$round: '$endPosition',
+			},
 		},
 	},
 	{
@@ -134,5 +150,6 @@ export interface TeamData {
 	avgUpperTeleop: number;
 	avgLowerTeleop: number;
 	positionControl: number;
+	endPosition: number;
 	teamNumber: number;
 }
