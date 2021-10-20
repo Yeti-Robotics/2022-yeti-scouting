@@ -18,7 +18,6 @@ const StandScouting: NextPage = () => {
 
 	return (
 		<Layout>
-			<pre>{JSON.stringify(user, null, 4)}</pre>
 			<ScoutingForm scouter={`${user.firstName} ${user.lastName}(${user.username})`} />
 		</Layout>
 	);
