@@ -94,6 +94,9 @@ export const teamDataAggregation = [
 					$multiply: ['$avgLowerTeleop', 100],
 				},
 			},
+			endPosition: {
+				$avg: '$end_position',
+			},
 		},
 	},
 	{
@@ -144,6 +147,9 @@ export const teamDataAggregation = [
 						},
 					},
 				],
+			},
+			endPosition: {
+				$round: '$endPosition',
 			},
 		},
 	},
