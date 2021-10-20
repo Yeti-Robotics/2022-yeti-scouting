@@ -62,7 +62,7 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20 }) => {
 				</table>
 				<br />
 				<div>
-					Showing the first {max} results of {rows.length} rows
+					Showing the first {firstPageRows.length} results of {rows.length} rows
 				</div>
 			</TableStyles>
 		</>
