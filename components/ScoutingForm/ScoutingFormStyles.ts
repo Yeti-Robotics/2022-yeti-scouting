@@ -76,6 +76,23 @@ export const Submit = styled.input`
 	}
 `;
 
+export const Register = styled.button`
+	margin-top: 1rem;
+	width: 100%;
+	padding: 15px;
+	border-radius: 10px;
+	font-size: 2rem;
+	font-weight: bold;
+	box-shadow: ${colors.defaultShadow};
+	background: rgb(0, 0, 0);
+	background: ${colors.primary};
+	cursor: pointer;
+
+	&:focus {
+		outline: none;
+	}
+`;
+
 export const Select = styled.select`
 	width: 90%;
 	border-radius: 10px;

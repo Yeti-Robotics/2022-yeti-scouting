@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
-import { Field, Input, Invalid, Section, Submit } from '../ScoutingForm/ScoutingFormStyles';
+import {
+	Field,
+	Input,
+	Invalid,
+	Register,
+	Section,
+	Submit,
+} from '../ScoutingForm/ScoutingFormStyles';
 import { useForm } from 'react-hook-form';
 import { User } from '@/models/user';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import Modal from '../Modal';
+import Link from 'next/link';
 
 const schema = Yup.object().shape({
 	username: Yup.string()
@@ -57,6 +65,11 @@ const Login: React.FC = () => {
 				</Field>
 			</Section>
 			<Submit type='submit' />
+			<Link href='/register' passHref>
+				<a style={{ width: '95%' }}>
+					<Register>Register Here!</Register>
+				</a>
+			</Link>
 		</form>
 	);
 };
