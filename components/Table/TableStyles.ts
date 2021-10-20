@@ -3,10 +3,19 @@ import styled from 'styled-components';
 
 export const TableStyles = styled.div`
 	padding: 1rem;
+	width: 100%;
+	flex-flow: row wrap;
+	display: flex;
+	overflow-x: auto;
+
+	p {
+		width: 100%;
+	}
 
 	table {
 		border-spacing: 0;
 		border: 1px solid black;
+		flex-grow: 1;
 
 		tr {
 			:last-child {

@@ -6,9 +6,10 @@ interface TableProps {
 	columns: any[];
 	data: any[];
 	max?: number;
+	showingNumOfTotal?: boolean;
 }
 
-const Table: React.FC<TableProps> = ({ columns, data, max = 20 }) => {
+const Table: React.FC<TableProps> = ({ columns, data, max = 20, showingNumOfTotal = false }) => {
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
 		{
 			columns,
@@ -32,14 +33,14 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20 }) => {
 									// we can add them into the header props
 									// Add the sorting props to control sorting. For this example
 									<th {...column.getHeaderProps(column.getSortByToggleProps())}>
-										{column.render('Header')}
 										<span>
 											{column.isSorted
 												? column.isSortedDesc
-													? ' ▼'
-													: ' ▲'
+													? '▼ '
+													: '▲ '
 												: ''}
 										</span>
+										{column.render('Header')}
 									</th>
 								))}
 							</tr>
@@ -51,6 +52,25 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20 }) => {
 							return (
 								<tr {...row.getRowProps()}>
 									{row.cells.map((cell) => {
+										if (cell.column.Header === 'Most Common End Pos') {
+											return (
+												<td {...cell.getCellProps()}>
+													{cell.value === 0
+														? 'Nothing'
+														: cell.value === 1
+														? 'Parked'
+														: cell.value === 2
+														? 'Got Lifted'
+														: cell.value === 3
+														? 'Lifted Teammate'
+														: cell.value === 4
+														? 'Solo, not balanced'
+														: cell.value === 5
+														? 'Solo, balanced'
+														: 'no data'}
+												</td>
+											);
+										}
 										return (
 											<td {...cell.getCellProps()}>{cell.render('Cell')}</td>
 										);
@@ -61,9 +81,11 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20 }) => {
 					</tbody>
 				</table>
 				<br />
-				<div>
-					Showing the first {firstPageRows.length} results of {rows.length} rows
-				</div>
+				{showingNumOfTotal && (
+					<p>
+						Showing the first {firstPageRows.length} results of {rows.length} rows
+					</p>
+				)}
 			</TableStyles>
 		</>
 	);

@@ -13,6 +13,26 @@ export const teamDataAggregation = [
 			teleopTotalUpperBalls: {
 				$add: ['$teleop_upper_scored_balls', '$teleop_upper_missed_balls'],
 			},
+			autoScore: {
+				$add: [
+					{
+						$multiply: ['$auto_upper_scored_balls', 4],
+					},
+					{
+						$multiply: ['$auto_low_scored_balls', 2],
+					},
+				],
+			},
+			teleopScore: {
+				$add: [
+					{
+						$multiply: ['$teleop_upper_scored_balls', 2],
+					},
+					{
+						$multiply: ['$teleop_low_scored_balls', 1],
+					},
+				],
+			},
 		},
 	},
 	{
@@ -74,6 +94,19 @@ export const teamDataAggregation = [
 					},
 				},
 			},
+			initiationLine: {
+				$avg: {
+					$multiply: [
+						{
+							$convert: {
+								input: '$cross_initiation_line',
+								to: 'int',
+							},
+						},
+						100,
+					],
+				},
+			},
 			avgUpperAuto: {
 				$avg: {
 					$multiply: ['$avgUpperAuto', 100],
@@ -97,6 +130,12 @@ export const teamDataAggregation = [
 			endPosition: {
 				$avg: '$end_position',
 			},
+			autoScore: {
+				$avg: '$autoScore',
+			},
+			teleopScore: {
+				$avg: '$teleopScore',
+			},
 		},
 	},
 	{
@@ -108,6 +147,16 @@ export const teamDataAggregation = [
 		$project: {
 			_id: 1,
 			positionControl: 1,
+			initiationLine: {
+				$concat: [
+					'%',
+					{
+						$toString: {
+							$trunc: ['$initiationLine', 1],
+						},
+					},
+				],
+			},
 			avgUpperAuto: {
 				$concat: [
 					'%',
@@ -151,6 +200,12 @@ export const teamDataAggregation = [
 			endPosition: {
 				$round: '$endPosition',
 			},
+			avgAutoScore: {
+				$round: ['$autoScore', 1],
+			},
+			avgTeleopScore: {
+				$round: ['$teleopScore', 1],
+			},
 		},
 	},
 	{
@@ -186,16 +241,19 @@ export const teamDataAggregation = [
 		},
 	},
 	{
-		$limit: 99,
+		$limit: 100,
 	},
 ];
 
 export interface TeamData {
 	team_name: string;
-	avgUpperAuto: number;
-	avgLowerAuto: number;
-	avgUpperTeleop: number;
-	avgLowerTeleop: number;
+	initiationLine: string;
+	avgUpperAuto: string;
+	avgLowerAuto: string;
+	avgUpperTeleop: string;
+	avgLowerTeleop: string;
+	avgAutoScore: number;
+	avgTeleopScore: number;
 	positionControl: number;
 	endPosition: number;
 	teamNumber: number;

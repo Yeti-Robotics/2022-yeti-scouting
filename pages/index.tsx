@@ -21,6 +21,10 @@ const Home: NextPage = () => {
 				accessor: 'team_name',
 			},
 			{
+				Header: 'Initiation Line',
+				accessor: 'initiationLine',
+			},
+			{
 				Header: 'Avg Upper Auto',
 				accessor: 'avgUpperAuto',
 			},
@@ -29,12 +33,24 @@ const Home: NextPage = () => {
 				accessor: 'avgLowerAuto',
 			},
 			{
+				Header: 'Avg Auto Score',
+				accessor: 'avgAutoScore',
+			},
+			{
 				Header: 'Avg Upper Teleop',
 				accessor: 'avgUpperTeleop',
 			},
 			{
 				Header: 'Avg Lower Teleop',
 				accessor: 'avgLowerTeleop',
+			},
+			{
+				Header: 'Avg Teleop Score',
+				accessor: 'avgTeleopScore',
+			},
+			{
+				Header: 'Most Common End Pos',
+				accessor: 'endPosition',
 			},
 		],
 		[],
@@ -48,7 +64,7 @@ const Home: NextPage = () => {
 		);
 
 	return (
-		<Layout style={{ overflowY: 'auto' }}>
+		<Layout style={{ overflowX: 'auto' }}>
 			<h1>scouting (PH)</h1>
 			<Table columns={tableColumns} data={data} max={99} />
 		</Layout>
