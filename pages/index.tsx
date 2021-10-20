@@ -9,7 +9,6 @@ import useSWR from 'swr';
 
 const Home: NextPage = () => {
 	const { data } = useSWR<TeamData[]>('/api/team-data', fetcher);
-	console.log(data);
 
 	const tableColumns = useMemo(
 		() => [
