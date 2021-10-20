@@ -75,43 +75,81 @@ export const teamDataAggregation = [
 				},
 			},
 			avgUpperAuto: {
-				$avg: '$avgUpperAuto',
+				$avg: {
+					$multiply: ['$avgUpperAuto', 100],
+				},
 			},
 			avgLowerAuto: {
-				$avg: '$avgLowerAuto',
+				$avg: {
+					$multiply: ['$avgLowerAuto', 100],
+				},
 			},
 			avgUpperTeleop: {
-				$avg: '$avgUpperTeleop',
+				$avg: {
+					$multiply: ['$avgUpperTeleop', 100],
+				},
 			},
 			avgLowerTeleop: {
-				$avg: '$avgLowerTeleop',
+				$avg: {
+					$multiply: ['$avgLowerTeleop', 100],
+				},
 			},
-			endPosition: {
-				$avg: '$end_position',
-			},
+		},
+	},
+	{
+		$sort: {
+			_id: 1,
 		},
 	},
 	{
 		$project: {
 			_id: 1,
 			positionControl: 1,
-			avgUpperAuto: 1,
-			avgLowerAuto: 1,
-			avgUpperTeleop: 1,
-			avgLowerTeleop: 1,
-			endPosition: {
-				$round: '$endPosition',
+			avgUpperAuto: {
+				$concat: [
+					'%',
+					{
+						$toString: {
+							$trunc: ['$avgUpperAuto', 1],
+						},
+					},
+				],
+			},
+			avgLowerAuto: {
+				$concat: [
+					'%',
+					{
+						$toString: {
+							$trunc: ['$avgLowerAuto', 1],
+						},
+					},
+				],
+			},
+			avgUpperTeleop: {
+				$concat: [
+					'%',
+					{
+						$toString: {
+							$trunc: ['$avgUpperTeleop', 1],
+						},
+					},
+				],
+			},
+			avgLowerTeleop: {
+				$concat: [
+					'%',
+					{
+						$toString: {
+							$trunc: ['$avgLowerTeleop', 1],
+						},
+					},
+				],
 			},
 		},
 	},
 	{
 		$addFields: {
 			teamNumber: '$_id',
-		},
-	},
-	{
-		$sort: {
-			teamNumber: 1,
 		},
 	},
 	{
@@ -140,6 +178,9 @@ export const teamDataAggregation = [
 			team: 0,
 			team_number: 0,
 		},
+	},
+	{
+		$limit: 99,
 	},
 ];
 

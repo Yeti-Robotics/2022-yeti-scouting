@@ -1,17 +1,46 @@
 import Layout from '@/components/Layout';
 import Loading from '@/components/Loading';
+import Table from '@/components/Table';
 import fetcher from '@/lib/fetch';
 import { TeamData } from '@/models/aggregations/team-data';
 import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useMemo } from 'react';
 import useSWR from 'swr';
 
 const Home: NextPage = () => {
-	const { data, error } = useSWR<TeamData[]>('/api/team-data', fetcher);
-	const router = useRouter();
+	const { data } = useSWR<TeamData[]>('/api/team-data', fetcher);
+	console.log(data);
 
-	if (error) router.push('/login');
+	const tableColumns = useMemo(
+		() => [
+			{
+				Header: '#',
+				accessor: 'teamNumber',
+			},
+			{
+				Header: 'Name',
+				accessor: 'team_name',
+			},
+			{
+				Header: 'Avg Upper Auto',
+				accessor: 'avgUpperAuto',
+			},
+			{
+				Header: 'Avg Lower Auto',
+				accessor: 'avgLowerAuto',
+			},
+			{
+				Header: 'Avg Upper Teleop',
+				accessor: 'avgUpperTeleop',
+			},
+			{
+				Header: 'Avg Lower Teleop',
+				accessor: 'avgLowerTeleop',
+			},
+		],
+		[],
+	);
+
 	if (!data)
 		return (
 			<Layout>
@@ -20,16 +49,9 @@ const Home: NextPage = () => {
 		);
 
 	return (
-		<Layout>
+		<Layout style={{ overflowY: 'auto' }}>
 			<h1>scouting (PH)</h1>
-			<div>
-				{data.map((team) => (
-					<p key={team.teamNumber}>
-						#: {team.teamNumber} name: {team.team_name} avg upper auto:{' '}
-						{team.avgUpperAuto} position control: {team.positionControl}
-					</p>
-				))}
-			</div>
+			<Table columns={tableColumns} data={data} max={99} />
 		</Layout>
 	);
 };
