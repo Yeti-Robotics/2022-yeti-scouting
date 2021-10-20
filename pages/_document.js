@@ -14,7 +14,10 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html lang='en'>
-				<Head>{this.props.styleTags}</Head>
+				<Head>
+					{this.props.styleTags}
+					<link rel='shortcut icon' href='/static/icon.png' />
+				</Head>
 				<body>
 					<Main />
 					<NextScript />
