@@ -9,7 +9,7 @@ import {
 	Child,
 } from './ClickableDropdownStyles';
 import { colors } from '@/styles/colors';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 interface ClickableDropDownItemProps {
 	item: {
