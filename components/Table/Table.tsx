@@ -20,7 +20,7 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20, showingNumOfTota
 
 	if (data[0] === undefined)
 		return (
-			<p style={{ fontSize: '3rem', fontWeight: 'bold', color: '#000000' }}>
+			<p style={{ fontSize: '2.3rem', fontWeight: 'bold', color: '#000000' }}>
 				There is no data for this table.
 			</p>
 		);
