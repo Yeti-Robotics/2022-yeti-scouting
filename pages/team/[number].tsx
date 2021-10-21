@@ -155,7 +155,11 @@ const TeamPage: NextPage = () => {
 
 					return (
 						<div
-							style={{ padding: '1rem', borderBottom: '2px solid #000000' }}
+							style={{
+								padding: '1rem',
+								borderBottom: '2px solid #000000',
+								width: 'auto',
+							}}
 							key={index}
 						>
 							<h2 style={{ border: 0 }}>{form.comment}</h2>

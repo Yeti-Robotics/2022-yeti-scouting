@@ -93,6 +93,7 @@ interface ScoutingFormProps {
 const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 	const {
 		register,
+		reset,
 		handleSubmit,
 		control,
 		watch,
@@ -115,6 +116,16 @@ const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 				});
 			}
 			const json = await res.json();
+			reset({
+				auto_upper_missed_balls: 0,
+				auto_low_missed_balls: 0,
+				auto_low_scored_balls: 0,
+				auto_upper_scored_balls: 0,
+				teleop_low_missed_balls: 0,
+				teleop_low_scored_balls: 0,
+				teleop_upper_missed_balls: 0,
+				teleop_upper_scored_balls: 0,
+			});
 			setLastForm(json);
 		});
 	};
