@@ -395,7 +395,9 @@ const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 					}/500)`}</label>
 					<textarea {...register('comment')} id='comment' autoComplete='off' />
 					{errors.comment?.message && <Invalid>{errors.comment?.message}</Invalid>}
-					<p>Add comments about strategy, failures, human players, fouls, etc.</p>
+					<p style={{ textAlign: 'center' }}>
+						Add comments about strategy, failures, human players, fouls, etc.
+					</p>
 				</Field>
 			</Section>
 
