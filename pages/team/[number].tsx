@@ -105,7 +105,7 @@ const TeamPage: NextPage = () => {
 	if (data.forms[0] === undefined && data.team === undefined) {
 		return (
 			<Layout>
-				<h1>There is no data.</h1>
+				<h1>There is no data for team {router.query.number}.</h1>
 			</Layout>
 		);
 	}
