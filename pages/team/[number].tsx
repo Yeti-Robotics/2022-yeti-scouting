@@ -164,7 +164,6 @@ const TeamPage: NextPage = () => {
 					);
 				})}
 			</Section>
-			<pre>{JSON.stringify(data, null, 4)}</pre>
 		</Layout>
 	);
 };
