@@ -80,6 +80,7 @@ export const Submit = styled.input`
 	background: rgb(0, 0, 0);
 	background: ${colors.primary};
 	cursor: pointer;
+	appearance: none;
 
 	&:focus {
 		outline: none;
