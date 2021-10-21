@@ -97,7 +97,15 @@ const TeamPage: NextPage = () => {
 	if (error) {
 		return (
 			<Layout>
-				<h1>There wa an error getting this data.</h1>
+				<h1>There was an error getting this data.</h1>
+			</Layout>
+		);
+	}
+
+	if (data.forms[0] === undefined && data.team === undefined) {
+		return (
+			<Layout>
+				<h1>There is no data.</h1>
 			</Layout>
 		);
 	}
