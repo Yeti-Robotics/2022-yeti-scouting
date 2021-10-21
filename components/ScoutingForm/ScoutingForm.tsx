@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form } from '@/models/form';
 import {
@@ -15,6 +15,7 @@ import ScoreInput from './ScoreInput';
 import StatusModal from './StatusModal';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Modal from '../Modal';
 
 const schema = Yup.object().shape({
 	team_number: Yup.number()
@@ -102,8 +103,53 @@ const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 		resolver: yupResolver(schema),
 	});
 	const [lastForm, setLastForm] = useState<{ message: string; id?: string; error: boolean }>();
+	const [isOffline, setIsOffline] = useState<boolean>();
+	const offlineForms = useRef<Form[]>([]);
+
+	useEffect(() => {
+		const setOffline = () => setIsOffline(true);
+		window.addEventListener('offline', setOffline);
+		return () => window.removeEventListener('offline', setOffline);
+	});
+	useEffect(() => {
+		const setOnline = () => {
+			console.log('setOnline');
+			const currentForms: Form[] = JSON.parse(
+				sessionStorage.getItem('offlineForms') || 'false',
+			);
+			setIsOffline(false);
+			if (currentForms) {
+				currentForms.forEach((form) =>
+					fetch('/api/submit-form', {
+						method: 'POST',
+						body: JSON.stringify(form),
+					}),
+				);
+				return sessionStorage.removeItem('offlineForms');
+			}
+		};
+		window.addEventListener('online', setOnline);
+		return () => window.removeEventListener('online', setOnline);
+	});
 
 	const onSubmit = (data: Form) => {
+		console.log('handler');
+		if (isOffline) {
+			const currentForms = JSON.parse(sessionStorage.getItem('offlineForms') || 'false');
+			offlineForms.current = currentForms ? currentForms : [];
+			offlineForms.current.push({ ...data, scouter });
+			sessionStorage.setItem('offlineForms', JSON.stringify(offlineForms.current));
+			return reset({
+				auto_upper_missed_balls: 0,
+				auto_low_missed_balls: 0,
+				auto_low_scored_balls: 0,
+				auto_upper_scored_balls: 0,
+				teleop_low_missed_balls: 0,
+				teleop_low_scored_balls: 0,
+				teleop_upper_missed_balls: 0,
+				teleop_upper_scored_balls: 0,
+			});
+		}
 		fetch('/api/submit-form', {
 			method: 'POST',
 			body: JSON.stringify({ ...data, scouter }),
@@ -136,6 +182,17 @@ const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 			style={{ width: 'clamp(300px, 2400px, 100%)', display: 'grid', placeItems: 'center' }}
 		>
 			<StatusModal submitted={lastForm} setSubmitted={setLastForm} />
+			<Modal state={isOffline}>
+				<p>
+					It seems you've gone offline. Forms submitted will be saved and submitted later.
+				</p>
+			</Modal>
+			<Modal state={typeof isOffline === 'undefined' ? undefined : !isOffline}>
+				<p>
+					It looks like you're back online! Saved form have been submitted and you can
+					submit noramlly.
+				</p>
+			</Modal>
 
 			{/* Match Info */}
 			<Section>
