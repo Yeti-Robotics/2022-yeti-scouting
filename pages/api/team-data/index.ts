@@ -8,9 +8,12 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 	if (req.method !== 'GET')
 		return res.status(405).json({ message: `${!req.method} is not allowed on this route.` });
 	try {
-		if (req.body) {
-			const { filter } = JSON.parse(req.body);
-			const team = await Form.aggregate([...teamDataAggregation, filter]);
+		const filter = req.cookies['team'];
+		if (filter) {
+			const team = await Form.aggregate([
+				...teamDataAggregation,
+				{ $match: { teamNumber: filter } },
+			]);
 			return res.status(200).json(team);
 		} else {
 			const teams = await Form.aggregate(teamDataAggregation);

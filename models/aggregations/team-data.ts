@@ -240,9 +240,6 @@ export const teamDataAggregation = [
 			team_number: 0,
 		},
 	},
-	{
-		$limit: 100,
-	},
 ];
 
 export interface TeamData {

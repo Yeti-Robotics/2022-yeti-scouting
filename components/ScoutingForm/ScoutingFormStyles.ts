@@ -18,6 +18,16 @@ export const Section = styled.div`
 		border-bottom: 2px solid #000000;
 		border-radius: 10px 10px 0 0;
 	}
+
+	h2 {
+		margin: 0;
+		padding: 1rem;
+		border-bottom: 2px solid #000000;
+
+		:last-child {
+			border: 0;
+		}
+	}
 `;
 
 export const Field = styled.div`

@@ -70,6 +70,33 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20, showingNumOfTota
 														: 'no data'}
 												</td>
 											);
+										} else if (cell.column.Header === 'Initiation Line') {
+											return (
+												<td {...cell.getCellProps()}>
+													{cell.render('Cell')}
+													{cell.value === true
+														? '✔️'
+														: cell.value === false
+														? '❌'
+														: typeof cell.value !== 'string'
+														? 'no data'
+														: null}
+												</td>
+											);
+										} else if (cell.column.Header === 'Name') {
+											return (
+												<td {...cell.getCellProps()}>
+													<a
+														style={{
+															textDecoration: 'underline',
+															color: 'blue',
+														}}
+														href={`/team/${row.cells[0].value}`}
+													>
+														{cell.value}
+													</a>
+												</td>
+											);
 										}
 										return (
 											<td {...cell.getCellProps()}>{cell.render('Cell')}</td>

@@ -16,7 +16,7 @@ class MyDocument extends Document {
 			<Html lang='en'>
 				<Head>
 					{this.props.styleTags}
-					<link rel='shortcut icon' href='/static/icon.png' />
+					<link rel='shortcut icon' href='/icon.png' />
 				</Head>
 				<body>
 					<Main />
