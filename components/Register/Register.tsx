@@ -57,7 +57,7 @@ const Register = () => {
 			})}
 			style={{ width: 'clamp(300px, 2400px, 100%)', display: 'grid', placeItems: 'center' }}
 		>
-			<Modal state={[modal, setModal]}>
+			<Modal state={modal}>
 				<p>This username is already in use</p>
 			</Modal>
 
