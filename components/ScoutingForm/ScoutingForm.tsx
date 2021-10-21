@@ -16,6 +16,7 @@ import StatusModal from './StatusModal';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Modal from '../Modal';
+import fetchTimeout from '@/lib/fetchWithTimeout';
 
 const schema = Yup.object().shape({
 	team_number: Yup.number()
@@ -112,11 +113,22 @@ const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 		return () => window.removeEventListener('offline', setOffline);
 	});
 	useEffect(() => {
-		const setOnline = () => {
-			console.log('setOnline');
+		const controller = new AbortController();
+		const setOnline = async () => {
 			const currentForms: Form[] = JSON.parse(
 				sessionStorage.getItem('offlineForms') || 'false',
 			);
+			if (
+				await fetchTimeout('/api/ping', 3000, { signal: controller.signal })
+					.then((res) => {
+						console.log('then');
+						return res.status ? false : true;
+					})
+					.catch(() => {
+						return true;
+					})
+			)
+				return;
 			setIsOffline(false);
 			if (currentForms) {
 				currentForms.forEach((form) =>
