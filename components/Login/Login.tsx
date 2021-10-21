@@ -49,7 +49,7 @@ const Login: React.FC = () => {
 			})}
 			style={{ width: 'clamp(300px, 2400px, 100%)', display: 'grid', placeItems: 'center' }}
 		>
-			<Modal state={[modal, setModal]}>Username or password is incorrect.</Modal>
+			<Modal state={modal}>Username or password is incorrect.</Modal>
 			<Section>
 				<h1>Login</h1>
 

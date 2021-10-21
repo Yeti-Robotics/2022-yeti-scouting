@@ -183,15 +183,11 @@ const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 		>
 			<StatusModal submitted={lastForm} setSubmitted={setLastForm} />
 			<Modal state={isOffline}>
-				<p>
-					It seems you've gone offline. Forms submitted will be saved and submitted later.
-				</p>
+				It seems you've gone offline. Forms submitted will be saved and submitted later.
 			</Modal>
 			<Modal state={typeof isOffline === 'undefined' ? undefined : !isOffline}>
-				<p>
-					It looks like you're back online! Saved form have been submitted and you can
-					submit noramlly.
-				</p>
+				It looks like you're back online! Saved form have been submitted and you can submit
+				noramlly.
 			</Modal>
 
 			{/* Match Info */}
