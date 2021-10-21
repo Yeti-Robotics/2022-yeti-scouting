@@ -18,6 +18,13 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20, showingNumOfTota
 		useSortBy,
 	);
 
+	if (data[0] === undefined)
+		return (
+			<p style={{ fontSize: '3rem', fontWeight: 'bold', color: '#000000' }}>
+				There is no data for this table.
+			</p>
+		);
+
 	// We don't want to render all 2000 rows for this example, so cap
 	// it at 20 for this use case
 	const firstPageRows = rows.slice(0, max);
