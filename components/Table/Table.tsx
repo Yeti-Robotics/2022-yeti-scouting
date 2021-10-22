@@ -54,10 +54,15 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20, showingNumOfTota
 						))}
 					</thead>
 					<tbody {...getTableBodyProps()}>
-						{firstPageRows.map((row) => {
+						{firstPageRows.map((row, index) => {
 							prepareRow(row);
 							return (
-								<tr {...row.getRowProps()}>
+								<tr
+									{...row.getRowProps()}
+									style={{
+										backgroundColor: index % 2 === 0 ? '#dbdbdb' : '#ffffff',
+									}}
+								>
 									{row.cells.map((cell) => {
 										if (cell.column.Header === 'Most Common End Pos') {
 											return (

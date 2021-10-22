@@ -149,52 +149,52 @@ export const teamDataAggregation = [
 			positionControl: 1,
 			initiationLine: {
 				$concat: [
-					'%',
 					{
 						$toString: {
 							$trunc: ['$initiationLine', 1],
 						},
 					},
+					'%',
 				],
 			},
 			avgUpperAuto: {
 				$concat: [
-					'%',
 					{
 						$toString: {
 							$trunc: ['$avgUpperAuto', 1],
 						},
 					},
+					'%',
 				],
 			},
 			avgLowerAuto: {
 				$concat: [
-					'%',
 					{
 						$toString: {
 							$trunc: ['$avgLowerAuto', 1],
 						},
 					},
+					'%',
 				],
 			},
 			avgUpperTeleop: {
 				$concat: [
-					'%',
 					{
 						$toString: {
 							$trunc: ['$avgUpperTeleop', 1],
 						},
 					},
+					'%',
 				],
 			},
 			avgLowerTeleop: {
 				$concat: [
-					'%',
 					{
 						$toString: {
 							$trunc: ['$avgLowerTeleop', 1],
 						},
 					},
+					'%',
 				],
 			},
 			endPosition: {
