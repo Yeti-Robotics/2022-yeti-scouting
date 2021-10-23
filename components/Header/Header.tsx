@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { HeaderWrapper, LogoWrapper } from './HeaderStyles';
 import ClickableDropdown from '../ClickableDropdown';
 import { useHidingHeader } from '../../hooks/useHidingHeader';
@@ -26,6 +26,27 @@ const Header: React.FC = () => {
 	}, [clickableDropdownShown]);
 	const { headerRef } = useHidingHeader(showHeaderCB, hideHeaderCB);
 
+	const menuItems = useMemo(
+		() => [
+			{
+				title: 'Scouting',
+				href: '/scouting',
+				children: [],
+			},
+			{
+				title: 'Register',
+				href: '/register',
+				children: [],
+			},
+			{
+				title: user?.isLoggedIn ? 'Logout' : 'Login',
+				href: user?.isLoggedIn ? '/logout' : '/login',
+				children: [],
+			},
+		],
+		[user],
+	);
+
 	useEffect(() => {
 		if (headerRef.current === null) return;
 		if (clickableDropdownShown) {
@@ -51,23 +72,11 @@ const Header: React.FC = () => {
 				{/* Changes header based on window's width */}
 				<>
 					<ClickableDropdown
-						items={[
-							{
-								title: 'Scouting',
-								href: '/scouting',
-								children: [],
-							},
-							{
-								title: 'Register',
-								href: '/register',
-								children: [],
-							},
-							{
-								title: user?.isLoggedIn ? 'Logout' : 'Login',
-								href: user?.isLoggedIn ? '/logout' : '/login',
-								children: [],
-							},
-						]}
+						items={
+							user?.administrator
+								? [...menuItems, { title: 'Admin', href: '/admin', children: [] }]
+								: menuItems
+						}
 					/>
 				</>
 				<Icicles

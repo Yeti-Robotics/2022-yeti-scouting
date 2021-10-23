@@ -6,11 +6,11 @@ interface User {
 	firstName: string;
 	lastName: string;
 	teamNumber: number;
-	administator: boolean;
+	administrator: boolean;
 	isLoggedIn: true;
 }
 
-const useUser = ({ redirectTo = '', redirectIfFound = false, redirectIfNotAdmin = false } = {}) => {
+const useUser = ({ redirectTo = '', redirectIfFound = false } = {}) => {
 	const [user, setUser] = useState<User>();
 	const getUser = useCallback(async () => {
 		fetch('/api/is-authenticated').then(async (res) => {
@@ -33,8 +33,7 @@ const useUser = ({ redirectTo = '', redirectIfFound = false, redirectIfNotAdmin 
 
 		if (
 			(redirectTo && !redirectIfFound && !user?.isLoggedIn) ||
-			(redirectIfFound && user?.isLoggedIn) ||
-			(redirectIfNotAdmin && user?.isLoggedIn && !user?.administator)
+			(redirectIfFound && user?.isLoggedIn)
 		) {
 			Router.push(`${redirectTo}?from=${Router.pathname}`);
 		}
