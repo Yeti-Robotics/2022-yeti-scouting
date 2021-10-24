@@ -17,7 +17,6 @@ export const ResultsWrapper = styled.div`
 // Filter
 export const FilterWrapper = styled.div`
 	min-width: 300px;
-	width: 30%;
 `;
 
 export const FilterForm = styled.form`
