@@ -145,7 +145,6 @@ const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 	});
 
 	const onSubmit = (data: Form) => {
-		console.log('handler');
 		if (isOffline) {
 			const currentForms = JSON.parse(sessionStorage.getItem('offlineForms') || 'false');
 			offlineForms.current = currentForms ? currentForms : [];
