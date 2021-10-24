@@ -1,28 +1,29 @@
 import Router from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 
-interface User {
+export interface User {
 	username: string;
 	firstName: string;
 	lastName: string;
 	teamNumber: number;
 	administrator: boolean;
 	isLoggedIn: true;
+	mutate: () => void;
 }
 
 const useUser = ({ redirectTo = '', redirectIfFound = false } = {}) => {
 	const [user, setUser] = useState<User>();
-	const getUser = useCallback(async () => {
-		fetch('/api/is-authenticated').then(async (res) => {
-			const json = await res.json();
-			setUser(json);
-		});
-	}, []);
 	const mutateUser = async () => {
 		const res = await fetch('/api/is-authenticated');
 		const json = await res.json();
-		setUser(json);
+		setUser({ ...json, mutate: mutateUser });
 	};
+	const getUser = useCallback(async () => {
+		fetch('/api/is-authenticated').then(async (res) => {
+			const json = await res.json();
+			setUser({ ...json, mutate: mutateUser });
+		});
+	}, []);
 
 	useEffect(() => {
 		getUser();
@@ -39,7 +40,7 @@ const useUser = ({ redirectTo = '', redirectIfFound = false } = {}) => {
 		}
 	}, [user, redirectTo, redirectIfFound]);
 
-	return { user, mutateUser };
+	return { user };
 };
 
 export default useUser;

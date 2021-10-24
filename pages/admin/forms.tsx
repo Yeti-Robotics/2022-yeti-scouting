@@ -28,7 +28,7 @@ const FormsPage: NextPage = () => {
 	return (
 		<Layout>
 			<h1>Forms</h1>
-			<Forms />
+			<Forms user={user} />
 		</Layout>
 	);
 };
