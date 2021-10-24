@@ -5,7 +5,8 @@ import React, { useMemo, useState } from 'react';
 import useSWR from 'swr';
 import Loading from '../Loading';
 import Filter from './Filter';
-import { FormsWrapper } from './FormsStyles';
+import FormCard from './FormCard';
+import { FormsWrapper, ResultsWrapper } from './FormsStyles';
 
 interface FormsProps {
 	user: User | undefined;
@@ -39,10 +40,14 @@ const Forms: React.FC<FormsProps> = ({ user }) => {
 	return (
 		<FormsWrapper>
 			<Filter setQuery={setQuery} />
-			{user?.isLoggedIn ? (
-				<pre>{JSON.stringify(data, null, 4)}</pre>
+			{data !== undefined && data[0] !== undefined ? (
+				<ResultsWrapper>
+					{data.map((form) => (
+						<FormCard key={form._id} form={form} />
+					))}
+				</ResultsWrapper>
 			) : (
-				<h1>You must be logged in to view this page.</h1>
+				<h1>No forms match this criteria.</h1>
 			)}
 		</FormsWrapper>
 	);

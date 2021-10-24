@@ -24,7 +24,7 @@ const formSchema = new Schema(
 );
 
 export interface Form {
-	id: number;
+	_id: string;
 	auto_low_missed_balls: number;
 	auto_low_scored_balls: number;
 	auto_upper_missed_balls: number;
