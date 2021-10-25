@@ -40,9 +40,9 @@ const Forms: React.FC<FormsProps> = ({ user }) => {
 		if (currData) {
 			user?.mutate();
 			setFallbackData(currData);
-			return [...currData].sort(compare).slice(0, 100);
+			return [...currData].sort(compare);
 		} else {
-			return fallbackData ? [...fallbackData].sort(compare).slice(0, 100) : [];
+			return fallbackData ? [...fallbackData].sort(compare) : [];
 		}
 	}, [currData, sort]);
 
@@ -55,7 +55,7 @@ const Forms: React.FC<FormsProps> = ({ user }) => {
 			<Filter setQuery={setQuery} setSort={setSort} />
 			{data !== undefined && data[0] !== undefined ? (
 				<ResultsWrapper>
-					{data.map((form) => (
+					{data.slice(0, 100).map((form) => (
 						<FormCard key={form._id} form={form} />
 					))}
 					<p>
