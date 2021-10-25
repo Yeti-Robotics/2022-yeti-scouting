@@ -30,11 +30,7 @@ const Forms: React.FC<FormsProps> = ({ user }) => {
 	}, [currData]);
 
 	if (!currData && !fallbackData) {
-		return (
-			<FormsWrapper>
-				<Loading />
-			</FormsWrapper>
-		);
+		return <Loading />;
 	}
 
 	return (
