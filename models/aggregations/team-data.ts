@@ -128,7 +128,7 @@ export const teamDataAggregation = [
 				},
 			},
 			endPosition: {
-				$avg: '$end_position',
+				$push: '$end_position',
 			},
 			autoScore: {
 				$avg: '$autoScore',
@@ -197,9 +197,7 @@ export const teamDataAggregation = [
 					'%',
 				],
 			},
-			endPosition: {
-				$round: '$endPosition',
-			},
+			endPosition: 1,
 			avgAutoScore: {
 				$round: ['$autoScore', 1],
 			},
@@ -252,6 +250,6 @@ export interface TeamData {
 	avgAutoScore: number;
 	avgTeleopScore: number;
 	positionControl: number;
-	endPosition: number;
+	endPosition: number[];
 	teamNumber: number;
 }

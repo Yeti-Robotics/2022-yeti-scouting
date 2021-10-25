@@ -8,17 +8,8 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 	if (req.method !== 'GET')
 		return res.status(405).json({ message: `${!req.method} is not allowed on this route.` });
 	try {
-		const filter = req.cookies['team'];
-		if (filter) {
-			const team = await Form.aggregate([
-				...teamDataAggregation,
-				{ $match: { teamNumber: filter } },
-			]);
-			return res.status(200).json(team);
-		} else {
-			const teams = await Form.aggregate(teamDataAggregation);
-			return res.status(200).json(teams);
-		}
+		const teams = await Form.aggregate(teamDataAggregation);
+		return res.status(200).json(teams);
 	} catch (err) {
 		console.error(err);
 		return res.status(500).json({ message: 'Internal server error.' });

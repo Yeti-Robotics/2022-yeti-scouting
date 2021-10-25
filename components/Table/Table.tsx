@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+import { mostCommonEndPosString } from '@/lib/mode';
 import { useTable, useSortBy } from 'react-table';
 import { TableStyles } from './TableStyles';
 
@@ -67,25 +68,12 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20, showingNumOfTota
 										if (cell.column.Header === 'Most Common End Pos') {
 											return (
 												<td {...cell.getCellProps()}>
-													{cell.value === 0
-														? 'Nothing'
-														: cell.value === 1
-														? 'Parked'
-														: cell.value === 2
-														? 'Got Lifted'
-														: cell.value === 3
-														? 'Lifted Teammate'
-														: cell.value === 4
-														? 'Solo, not balanced'
-														: cell.value === 5
-														? 'Solo, balanced'
-														: 'no data'}
+													{mostCommonEndPosString(cell.value)}
 												</td>
 											);
 										} else if (cell.column.Header === 'Initiation Line') {
 											return (
 												<td {...cell.getCellProps()}>
-													{cell.render('Cell')}
 													{cell.value === true
 														? '✔️'
 														: cell.value === false
@@ -107,6 +95,12 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20, showingNumOfTota
 													>
 														{cell.value}
 													</a>
+												</td>
+											);
+										} else if (cell.column.Header === 'End Pos') {
+											return (
+												<td {...cell.getCellProps()}>
+													{mostCommonEndPosString([cell.value])}
 												</td>
 											);
 										}

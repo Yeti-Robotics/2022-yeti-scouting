@@ -10,10 +10,11 @@ import { Form } from '@/models/form';
 import Title from '@/components/Title';
 import { Section } from '@/components/ScoutingForm/ScoutingFormStyles';
 import Table from '@/components/Table';
+import { mostCommonEndPosString } from '@/lib/mode';
 
 const TeamPage: NextPage = () => {
 	const router = useRouter();
-	const { data, mutate, error } = useSWR<{ team: TeamData; forms: Form[] }>(
+	const { data, error } = useSWR<{ team: TeamData; forms: Form[] }>(
 		`/api/team-data/${router.isReady ? router.query.number : ''}`,
 		fetcher,
 	);
@@ -48,6 +49,10 @@ const TeamPage: NextPage = () => {
 				Header: 'Lower Missed',
 				accessor: 'auto_low_missed_balls',
 			},
+			{
+				Header: 'End Pos',
+				accessor: 'end_position',
+			},
 		],
 		[],
 	);
@@ -81,6 +86,10 @@ const TeamPage: NextPage = () => {
 			{
 				Header: 'Lower Missed',
 				accessor: 'teleop_low_missed_balls',
+			},
+			{
+				Header: 'End Pos',
+				accessor: 'end_position',
 			},
 		],
 		[],
@@ -124,22 +133,7 @@ const TeamPage: NextPage = () => {
 				<h2>Avg Upper Teleop: {data.team.avgUpperTeleop}</h2>
 				<h2>Avg Lower Teleop: {data.team.avgLowerTeleop}</h2>
 				<h2>Avg Teleop Score: {data.team.avgTeleopScore}</h2>
-				<h2>
-					Most Common End Position:{' '}
-					{data.team.endPosition === 0
-						? 'Nothing'
-						: data.team.endPosition === 1
-						? 'Parked'
-						: data.team.endPosition === 2
-						? 'Got Lifted'
-						: data.team.endPosition === 3
-						? 'LiftedTeammate'
-						: data.team.endPosition === 4
-						? 'Solo, not balanced'
-						: data.team.endPosition === 5
-						? 'Solo,balanced'
-						: 'no data'}
-				</h2>
+				<h2>Most Common End Position: {mostCommonEndPosString(data.team.endPosition)}</h2>
 			</Section>
 			<Section style={{ paddingBottom: 0 }}>
 				<h1>Auto Match Data</h1>
