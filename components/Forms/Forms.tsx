@@ -1,7 +1,7 @@
 import { User } from '@/hooks/useUser';
 import fetcher from '@/lib/fetch';
-import { Form } from '@/models/form';
-import React, { useMemo, useState } from 'react';
+import { Form, NumForm } from '@/models/form';
+import React, { useCallback, useMemo, useState } from 'react';
 import useSWR from 'swr';
 import Loading from '../Loading';
 import Filter from './Filter';
@@ -19,15 +19,32 @@ const Forms: React.FC<FormsProps> = ({ user }) => {
 		fetcher,
 	);
 	const [fallbackData, setFallbackData] = useState(currData);
+	const [sort, setSort] = useState<{
+		by: keyof NumForm;
+		from: 1 | -1;
+	}>({
+		by: 'match_number',
+		from: -1,
+	});
+	const compare = useCallback(
+		(a: Form, b: Form) => {
+			if (sort.from === 1) {
+				return b[sort.by] - a[sort.by];
+			} else {
+				return a[sort.by] - b[sort.by];
+			}
+		},
+		[sort],
+	);
 	const data = useMemo(() => {
 		if (currData) {
 			user?.mutate();
 			setFallbackData(currData);
-			return currData;
+			return [...currData].sort(compare).slice(0, 100);
 		} else {
-			return fallbackData;
+			return fallbackData ? [...fallbackData].sort(compare).slice(0, 100) : [];
 		}
-	}, [currData]);
+	}, [currData, sort]);
 
 	if (!currData && !fallbackData) {
 		return <Loading />;
@@ -35,12 +52,15 @@ const Forms: React.FC<FormsProps> = ({ user }) => {
 
 	return (
 		<FormsWrapper>
-			<Filter setQuery={setQuery} />
+			<Filter setQuery={setQuery} setSort={setSort} />
 			{data !== undefined && data[0] !== undefined ? (
 				<ResultsWrapper>
 					{data.map((form) => (
 						<FormCard key={form._id} form={form} />
 					))}
+					<p>
+						Showing {data.length} of {currData?.length} forms
+					</p>
 				</ResultsWrapper>
 			) : (
 				<h1>No forms match this criteria.</h1>

@@ -1,22 +1,21 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Form } from '@/models/form';
+import { Form, NumForm } from '@/models/form';
 import { Field, FilterForm, FilterWrapper, Submit } from './FormsStyles';
-import { Invalid } from '../ScoutingForm/ScoutingFormStyles';
+import { Invalid, Select } from '../ScoutingForm/ScoutingFormStyles';
 
 interface FilterProps {
 	setQuery: React.Dispatch<React.SetStateAction<any>>;
+	setSort: React.Dispatch<React.SetStateAction<{ by: keyof NumForm; from: 1 | -1 }>>;
 }
 
-const Filter: React.FC<FilterProps> = ({ setQuery }) => {
+const Filter: React.FC<FilterProps> = ({ setQuery, setSort }) => {
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm<Omit<Form, 'comment'>>({
+	} = useForm<Omit<Form, 'comment'> & { by: keyof NumForm; from: 1 | -1 }>({
 		shouldUnregister: false,
 	});
 
@@ -24,7 +23,8 @@ const Filter: React.FC<FilterProps> = ({ setQuery }) => {
 		<FilterWrapper>
 			<FilterForm
 				onSubmit={handleSubmit((data) => {
-					console.log(data);
+					console.log({ by: data.by, from: data.from });
+					setSort({ by: data.by, from: data.from });
 					setQuery(data);
 				})}
 			>
@@ -61,6 +61,34 @@ const Filter: React.FC<FilterProps> = ({ setQuery }) => {
 						autoComplete='off'
 					/>
 					{errors.preload?.message && <Invalid>{errors.preload?.message}</Invalid>}
+				</Field>
+
+				<Field>
+					<label>Sort By</label>
+					<Select
+						{...register('by', { required: false })}
+						style={{ width: 200 }}
+						defaultValue='match_number'
+					>
+						<option value='match_number'>Match Number</option>
+						<option value='team_number'>Team Number</option>
+						<option value='preload'>Preload</option>
+						<option value='auto_upper_scored_balls'>Auto Upper Scored</option>
+						<option value='auto_upper_missed_balls'>Auto Upper Missed</option>
+						<option value='auto_low_scored_balls'>Auto Lower Scored</option>
+						<option value='auto_low_missed_balls'>Auto Lower Scored</option>
+					</Select>
+				</Field>
+				<Field>
+					<label>Sort From</label>
+					<Select
+						{...register('from', { required: false, valueAsNumber: true })}
+						style={{ width: 200 }}
+						defaultValue={1}
+					>
+						<option value={1}>High to Low</option>
+						<option value={-1}>Low to High</option>
+					</Select>
 				</Field>
 
 				<div style={{ display: 'grid', placeItems: 'center', rowGap: '1rem' }}>

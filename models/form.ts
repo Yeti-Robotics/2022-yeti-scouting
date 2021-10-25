@@ -44,7 +44,18 @@ export interface Form {
 	teleop_low_scored_balls: number;
 	teleop_upper_missed_balls: number;
 	teleop_upper_scored_balls: number;
-	timestamp: string;
+	[key: string]: any; //janky :pensive: (much "type safe")
 }
+
+export type NumForm = Omit<
+	Form,
+	| '_id'
+	| 'comment'
+	| 'cross_initation_line'
+	| 'scouter'
+	| 'position_control'
+	| 'rotation_control'
+	| 'end_position'
+>;
 
 export default models.form || model('form', formSchema);
