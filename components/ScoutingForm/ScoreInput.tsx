@@ -1,10 +1,16 @@
-import { Controller } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 import React from 'react';
 import { ScoreInputStyles } from './ScoutingFormStyles';
 
 /* Typescript was broken in here :pensive: */
 
-const ScoreInput = ({ label, name, control, ...inputProps }) => {
+interface ScoreInputProps {
+	label: string;
+	name: string;
+	control: Control<any, object>;
+}
+
+const ScoreInput: React.FC<ScoreInputProps> = ({ label, name, control, ...inputProps }) => {
 	return (
 		<Controller
 			name={name}
