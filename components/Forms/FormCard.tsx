@@ -13,10 +13,10 @@ const FormCard: React.FC<FormCardProps> = ({ form }) => {
 			<FormCardWrapper>
 				<h2>Match #: {form.match_number}</h2>
 				<h3>Team #: {form.team_number}</h3>
-				<h4>Auto Upper: {form.auto_upper_scored_balls}</h4>
-				<h4>Auto Lower: {form.auto_low_scored_balls}</h4>
-				<h4>Teleop Upper: {form.teleop_upper_scored_balls}</h4>
-				<h4>Teleop Lower: {form.teleop_low_scored_balls}</h4>
+				<h4>Auto Upper Scored: {form.auto_upper_scored_balls}</h4>
+				<h4>Auto Lower Scored: {form.auto_low_scored_balls}</h4>
+				<h4>Teleop Upper Scored: {form.teleop_upper_scored_balls}</h4>
+				<h4>Teleop Lower Scored: {form.teleop_low_scored_balls}</h4>
 				<p>Scouter: {form.scouter}</p>
 			</FormCardWrapper>
 		</Link>

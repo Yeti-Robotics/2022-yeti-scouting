@@ -52,7 +52,7 @@ const Filter: React.FC<FilterProps> = ({ setQuery, setSort }) => {
 						<Invalid>{errors.match_number?.message}</Invalid>
 					)}
 				</Field>
-				<Field>
+				{/* {<Field>
 					<label>Preload</label>
 					<input
 						{...register('preload', { required: false })}
@@ -61,7 +61,7 @@ const Filter: React.FC<FilterProps> = ({ setQuery, setSort }) => {
 						autoComplete='off'
 					/>
 					{errors.preload?.message && <Invalid>{errors.preload?.message}</Invalid>}
-				</Field>
+				</Field>} */}
 
 				<Field>
 					<label>Sort By</label>
@@ -73,10 +73,17 @@ const Filter: React.FC<FilterProps> = ({ setQuery, setSort }) => {
 						<option value='match_number'>Match Number</option>
 						<option value='team_number'>Team Number</option>
 						<option value='preload'>Preload</option>
+						<option value='spill_balls'>Spilled Balls</option>
+						<option value='end_position'>End Position</option>
+						<option value='defense'>Defense</option>
 						<option value='auto_upper_scored_balls'>Auto Upper Scored</option>
 						<option value='auto_upper_missed_balls'>Auto Upper Missed</option>
 						<option value='auto_low_scored_balls'>Auto Lower Scored</option>
 						<option value='auto_low_missed_balls'>Auto Lower Scored</option>
+						<option value='teleop_upper_scored_balls'>Teleop Upper Scored</option>
+						<option value='teleop_upper_missed_balls'>Teleop Upper Missed</option>
+						<option value='teleop_low_scored_balls'>Teleop Lower Scored</option>
+						<option value='teleop_low_missed_balls'>Teleop Lower Missed</option>
 					</Select>
 				</Field>
 				<Field>

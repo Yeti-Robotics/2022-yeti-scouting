@@ -18,10 +18,9 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const LogoWrapper = styled.div`
-	padding: 5px 50px 0 50px;
+	padding: 0px 50px 0 50px;
 	background: ${colors.primary};
 	color: ${colors.primary};
-	font-size: 48px;
 	font-weight: bold;
 `;
 

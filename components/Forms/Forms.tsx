@@ -24,7 +24,7 @@ const Forms: React.FC<FormsProps> = ({ user }) => {
 		from: 1 | -1;
 	}>({
 		by: 'match_number',
-		from: -1,
+		from: 1,
 	});
 	const compare = useCallback(
 		(a: Form, b: Form) => {
