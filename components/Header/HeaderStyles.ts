@@ -21,7 +21,6 @@ export const LogoWrapper = styled.div`
 	padding: 5px 50px 0 50px;
 	background: ${colors.primary};
 	color: ${colors.primary};
-	font-family: 'Times New Roman', Times, serif;
 	font-size: 48px;
 	font-weight: bold;
 `;
