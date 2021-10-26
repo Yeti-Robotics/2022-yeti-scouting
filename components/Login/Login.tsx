@@ -64,7 +64,7 @@ const Login: React.FC = () => {
 					{errors.password?.message && <Invalid>{errors.password?.message}</Invalid>}
 				</Field>
 			</Section>
-			<Submit type='submit' />
+			<Submit type='submit'>Submit</Submit>
 			<Link href='/register' passHref>
 				<a style={{ width: '95%' }}>
 					<Register>Register Here!</Register>

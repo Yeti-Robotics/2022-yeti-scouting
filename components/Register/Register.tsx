@@ -107,7 +107,7 @@ const Register = () => {
 					)}
 				</Field>
 			</Section>
-			<Submit type='submit' />
+			<Submit type='submit'>Submit</Submit>
 		</form>
 	);
 };
