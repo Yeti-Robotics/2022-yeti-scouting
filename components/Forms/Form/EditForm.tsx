@@ -1,22 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Form } from '@/models/form';
+import ScoreInput from '@/components/ScoutingForm/ScoreInput';
 import {
 	Checkbox,
 	Field,
-	Input,
 	HoriSelect,
-	Section,
-	Submit,
-	Select,
+	Input,
 	Invalid,
-} from './ScoutingFormStyles';
-import ScoreInput from './ScoreInput';
-import StatusModal from './StatusModal';
+	Section,
+	Select,
+	Submit,
+} from '@/components/ScoutingForm/ScoutingFormStyles';
+import { Form } from '@/models/form';
+import { useForm } from 'react-hook-form';
+import React from 'react';
+import { EditFormWrapper } from './FormStyles';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Modal from '../Modal';
-import fetchTimeout from '@/lib/fetchWithTimeout';
 
 const schema = Yup.object().shape({
 	team_number: Yup.number()
@@ -88,119 +86,25 @@ const schema = Yup.object().shape({
 	comment: Yup.string().max(500, 'Max of 500 characters').required('This field is required'),
 });
 
-interface ScoutingFormProps {
-	scouter: string;
+interface EditFormProps {
+	form: Form;
 }
 
-const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
+const EditForm: React.FC<EditFormProps> = ({ form }) => {
 	const {
 		register,
-		reset,
 		handleSubmit,
 		control,
 		watch,
 		formState: { errors },
-	} = useForm<Form>({
-		resolver: yupResolver(schema),
-	});
-	const [lastForm, setLastForm] = useState<{ message: string; id?: string; error: boolean }>();
-	const [isOffline, setIsOffline] = useState<boolean>();
-	const offlineForms = useRef<Form[]>([]);
-
-	useEffect(() => {
-		const setOffline = () => setIsOffline(true);
-		window.addEventListener('offline', setOffline);
-		return () => window.removeEventListener('offline', setOffline);
-	});
-	useEffect(() => {
-		const controller = new AbortController();
-		const setOnline = async () => {
-			const currentForms: Form[] = JSON.parse(
-				sessionStorage.getItem('offlineForms') || 'false',
-			);
-			if (
-				await fetchTimeout('/api/ping', 3000, { signal: controller.signal })
-					.then((res) => {
-						console.log('then');
-						return res.status ? false : true;
-					})
-					.catch(() => {
-						return true;
-					})
-			)
-				return;
-			setIsOffline(false);
-			if (currentForms) {
-				currentForms.forEach((form) =>
-					fetch('/api/submit-form', {
-						method: 'POST',
-						body: JSON.stringify(form),
-					}),
-				);
-				return sessionStorage.removeItem('offlineForms');
-			}
-		};
-		window.addEventListener('online', setOnline);
-		return () => window.removeEventListener('online', setOnline);
-	});
-
-	const onSubmit = (data: Form) => {
-		if (isOffline) {
-			const currentForms = JSON.parse(sessionStorage.getItem('offlineForms') || 'false');
-			offlineForms.current = currentForms ? currentForms : [];
-			offlineForms.current.push({ ...data, scouter });
-			sessionStorage.setItem('offlineForms', JSON.stringify(offlineForms.current));
-			return reset({
-				auto_upper_missed_balls: 0,
-				auto_low_missed_balls: 0,
-				auto_low_scored_balls: 0,
-				auto_upper_scored_balls: 0,
-				teleop_low_missed_balls: 0,
-				teleop_low_scored_balls: 0,
-				teleop_upper_missed_balls: 0,
-				teleop_upper_scored_balls: 0,
-			});
-		}
-		fetch('/api/submit-form', {
-			method: 'POST',
-			body: JSON.stringify({ ...data, scouter }),
-		}).then(async (res) => {
-			if (res.status == 401 || res.status == 403) {
-				console.log('Not authorized');
-				return setLastForm({
-					message: 'You are not logged in',
-					error: true,
-				});
-			}
-			const json = await res.json();
-			reset({
-				auto_upper_missed_balls: 0,
-				auto_low_missed_balls: 0,
-				auto_low_scored_balls: 0,
-				auto_upper_scored_balls: 0,
-				teleop_low_missed_balls: 0,
-				teleop_low_scored_balls: 0,
-				teleop_upper_missed_balls: 0,
-				teleop_upper_scored_balls: 0,
-			});
-			setLastForm(json);
-		});
-	};
+	} = useForm<Form>({ defaultValues: form, resolver: yupResolver(schema) });
 
 	return (
-		<form
-			onSubmit={handleSubmit(onSubmit)}
-			style={{ width: 'clamp(300px, 2400px, 100%)', display: 'grid', placeItems: 'center' }}
+		<EditFormWrapper
+			onSubmit={handleSubmit((data) => {
+				fetch('/api/admin/form/update', { method: 'POST', body: JSON.stringify(data) });
+			})}
 		>
-			<StatusModal submitted={lastForm} setSubmitted={setLastForm} />
-			<Modal state={isOffline}>
-				It seems you've gone offline. Forms submitted will be saved and submitted later.
-			</Modal>
-			<Modal state={typeof isOffline === 'undefined' ? undefined : !isOffline}>
-				It looks like you're back online! Your saved form(s) have been submitted and you can
-				submit noramlly.
-			</Modal>
-
 			{/* Match Info */}
 			<Section>
 				<h1>Match Info</h1>
@@ -412,9 +316,9 @@ const ScoutingForm: React.FC<ScoutingFormProps> = ({ scouter }) => {
 				</Field>
 			</Section>
 
-			<Submit type='submit'>Submit</Submit>
-		</form>
+			<Submit type='submit'>Update</Submit>
+		</EditFormWrapper>
 	);
 };
 
-export default ScoutingForm;
+export default EditForm;

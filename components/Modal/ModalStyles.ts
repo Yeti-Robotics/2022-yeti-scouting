@@ -20,7 +20,7 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalButton = styled.button`
-	margin: 0;
+	margin: 1rem 0 0 0;
 	border: 0;
 	display: grid;
 	place-items: center;

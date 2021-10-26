@@ -45,7 +45,15 @@ export const Field = styled.div`
 	}
 `;
 
-export const Submit = styled.button``;
+export const Submit = styled.button`
+	border-radius: 10px;
+	font-size: 1rem;
+	font-weight: bold;
+	background-color: ${colors.primary};
+	color: ${colors.secondary};
+	width: 50%;
+	padding: 0.5rem 0 0.5rem 0;
+`;
 
 // FormCard
 export const FormCardWrapper = styled.a`

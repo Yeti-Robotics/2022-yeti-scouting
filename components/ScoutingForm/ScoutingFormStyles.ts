@@ -70,7 +70,7 @@ export const Input = styled.input`
 	}
 `;
 
-export const Submit = styled.input`
+export const Submit = styled.button`
 	width: 95%;
 	padding: 15px;
 	border-radius: 10px;
