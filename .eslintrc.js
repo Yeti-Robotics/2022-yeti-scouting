@@ -6,7 +6,6 @@ module.exports = {
 		},
 		ecmaVersion: 12, //latest version of ES
 		tsconfigRootDir: __dirname,
-		project: './tsconfig.json',
 	},
 	extends: [
 		'next/core-web-vitals',
