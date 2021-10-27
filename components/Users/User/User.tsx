@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import useSWR from 'swr';
 import { UserWrapper } from './UserStyles';
+import EditUser from './EditUser';
 
 interface UserProps {
 	user: User | undefined;
@@ -92,10 +93,7 @@ const User: React.FC<UserProps> = () => {
 				</svg>
 			</button>
 			<UserWrapper>
-				<h1>{data.username}</h1>
-				<h2>Full Name: {data.firstName + ' ' + data.lastName}</h2>
-				<h2>Team #: {data.teamNumber}</h2>
-				<h2>Admin?: {data.administrator.toString()}</h2>
+				<EditUser user={data} />
 			</UserWrapper>
 		</>
 	);
