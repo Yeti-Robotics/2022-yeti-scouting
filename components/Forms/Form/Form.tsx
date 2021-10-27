@@ -1,4 +1,3 @@
-import Layout from '@/components/Layout';
 import Loading from '@/components/Loading';
 import Modal from '@/components/Modal';
 import { ModalButton } from '@/components/Modal/ModalStyles';
