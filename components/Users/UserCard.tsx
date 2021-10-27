@@ -12,6 +12,8 @@ const FormCard: React.FC<FormCardProps> = ({ user }) => {
 		<Link href={`/admin/users/${user.username}`} passHref>
 			<FormCardWrapper>
 				<h1>{user.username}</h1>
+				<h2>Full Name: {user.firstName + ' ' + user.lastName}</h2>
+				<h2>Team #: {user.teamNumber}</h2>
 			</FormCardWrapper>
 		</Link>
 	);

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Form, NumForm } from '@/models/form';
 import { Field, FilterForm, FilterWrapper, Submit } from './UsersStyles';
 import { Invalid, Select } from '../ScoutingForm/ScoutingFormStyles';
 import { User } from '@/hooks/useUser';
