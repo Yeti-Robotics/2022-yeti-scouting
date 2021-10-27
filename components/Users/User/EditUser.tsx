@@ -50,23 +50,31 @@ const EditUser: React.FC<EditUserProps> = ({ user }) => {
 				<Field>
 					<label>First Name</label>
 					<Input {...register('firstName')} />
+					{errors.firstName?.message && <Invalid>{errors.firstName?.message}</Invalid>}
 				</Field>
 				<Field>
 					<label>Last Name</label>
 					<Input {...register('lastName')} />
+					{errors.lastName?.message && <Invalid>{errors.lastName?.message}</Invalid>}
 				</Field>
 				<Field>
 					<label>Team #</label>
 					<Input {...register('teamNumber', { valueAsNumber: true })} type='number' />
+					{errors.teamNumber?.message && <Invalid>{errors.teamNumber?.message}</Invalid>}
 				</Field>
 				<Field>
 					<label>Administator?</label>
 					<Checkbox {...register('administrator')} type='checkbox' />
+					{errors.administrator?.message && (
+						<Invalid>{errors.administrator?.message}</Invalid>
+					)}
 				</Field>
 				<Field>
 					<label>New Password</label>
 					<Input {...register('newPassword', { required: false })} />
-					<Invalid>{errors.newPassword?.message}</Invalid>
+					{errors.newPassword?.message && (
+						<Invalid>{errors.newPassword?.message}</Invalid>
+					)}
 				</Field>
 			</Section>
 			<Submit type='submit'>Update</Submit>

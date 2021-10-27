@@ -28,6 +28,11 @@ const Filter: React.FC<FilterProps> = ({ setQuery, setSort }) => {
 				})}
 			>
 				<Field>
+					<label>Username</label>
+					<input {...register('username')} autoComplete='off' />
+					{errors.username?.message && <Invalid>{errors.username?.message}</Invalid>}
+				</Field>
+				<Field>
 					<label>Team Number</label>
 					<input
 						{...register('teamNumber', { required: false })}
@@ -36,6 +41,16 @@ const Filter: React.FC<FilterProps> = ({ setQuery, setSort }) => {
 						autoComplete='off'
 					/>
 					{errors.teamNumber?.message && <Invalid>{errors.teamNumber?.message}</Invalid>}
+				</Field>
+				<Field>
+					<label>First Name</label>
+					<input {...register('firstName')} autoComplete='off' />
+					{errors.firstName?.message && <Invalid>{errors.firstName?.message}</Invalid>}
+				</Field>
+				<Field>
+					<label>Last Name</label>
+					<input {...register('lastName')} autoComplete='off' />
+					{errors.lastName?.message && <Invalid>{errors.lastName?.message}</Invalid>}
 				</Field>
 
 				<Field>
