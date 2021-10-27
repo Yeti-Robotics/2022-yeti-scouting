@@ -24,27 +24,15 @@ const Form: React.FC<FormProps> = () => {
 	const [deleteWarn, setDeleteWarn] = useState(false);
 
 	if (!data) {
-		return (
-			<Layout>
-				<Loading />
-			</Layout>
-		);
+		return <Loading />;
 	}
 
 	if (error) {
-		return (
-			<Layout>
-				<h1>There was an error getting this data.</h1>
-			</Layout>
-		);
+		return <h1>There was an error getting this data.</h1>;
 	}
 
 	if (!data._id) {
-		return (
-			<Layout>
-				<h1>No form exists with this id.</h1>
-			</Layout>
-		);
+		return <h1>No form exists with this id.</h1>;
 	}
 
 	return (

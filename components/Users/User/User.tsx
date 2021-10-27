@@ -23,27 +23,15 @@ const User: React.FC<UserProps> = () => {
 	const [deleteWarn, setDeleteWarn] = useState(false);
 
 	if (!data) {
-		return (
-			<Layout>
-				<Loading />
-			</Layout>
-		);
+		return <Loading />;
 	}
 
 	if (error) {
-		return (
-			<Layout>
-				<h1>There was an error getting this data.</h1>
-			</Layout>
-		);
+		return <h1>There was an error getting this data.</h1>;
 	}
 
 	if (!data.username) {
-		return (
-			<Layout>
-				<h1>No User exists with this username.</h1>
-			</Layout>
-		);
+		return <h1>No User exists with this username.</h1>;
 	}
 
 	return (
