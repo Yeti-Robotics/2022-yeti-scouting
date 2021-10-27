@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 import { mostCommonEndPosString } from '@/lib/mode';
 import { useTable, useSortBy } from 'react-table';
+import { setLocale } from 'yup';
 import { TableStyles } from './TableStyles';
 
 interface TableProps {
@@ -80,7 +81,7 @@ const Table: React.FC<TableProps> = ({ columns, data, max = 20, showingNumOfTota
 														? '❌'
 														: typeof cell.value !== 'string'
 														? 'no data'
-														: null}
+														: cell.value}
 												</td>
 											);
 										} else if (cell.column.Header === 'Name') {

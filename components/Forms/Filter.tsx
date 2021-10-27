@@ -23,7 +23,6 @@ const Filter: React.FC<FilterProps> = ({ setQuery, setSort }) => {
 		<FilterWrapper>
 			<FilterForm
 				onSubmit={handleSubmit((data) => {
-					console.log({ by: data.by, from: data.from });
 					setSort({ by: data.by, from: data.from });
 					setQuery(data);
 				})}

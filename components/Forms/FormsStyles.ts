@@ -53,6 +53,7 @@ export const Submit = styled.button`
 	color: ${colors.secondary};
 	width: 50%;
 	padding: 0.5rem 0 0.5rem 0;
+	cursor: pointer;
 `;
 
 // FormCard

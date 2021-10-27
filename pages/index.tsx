@@ -65,7 +65,7 @@ const Home: NextPage = () => {
 
 	return (
 		<Layout style={{ overflowX: 'auto' }}>
-			<h1>scouting (PH)</h1>
+			<h1>Scouting</h1>
 			<Table columns={tableColumns} data={data} max={99} />
 		</Layout>
 	);
