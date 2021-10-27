@@ -31,7 +31,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
 			}
 			res.setHeader(
 				'Set-Cookie',
-				`jwt=${accessToken}; HttpOnly; Path=/; Expires=${new Date(
+				`jwt=${accessToken}; HttpOnly; Secure; Path=/; Expires=${new Date(
 					Date.now().valueOf() + 3600000,
 				).toUTCString()}`,
 			);
