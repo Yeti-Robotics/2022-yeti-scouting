@@ -4,6 +4,7 @@ import useUser from '@/hooks/useUser';
 import { NextPage } from 'next';
 import React from 'react';
 import TopButton from '@/components/TopButton';
+import Users from '@/components/Users';
 
 const FormsPage: NextPage = () => {
 	const { user } = useUser({ redirectTo: '/login' });
@@ -28,6 +29,7 @@ const FormsPage: NextPage = () => {
 	return (
 		<Layout>
 			<h1>Users</h1>
+			<Users user={user} />
 			<TopButton text='TOP' />
 		</Layout>
 	);
