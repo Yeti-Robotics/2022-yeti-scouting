@@ -3,7 +3,6 @@ import Loading from '@/components/Loading';
 import useUser from '@/hooks/useUser';
 import { NextPage } from 'next';
 import React from 'react';
-import Forms from '@/components/Forms';
 import TopButton from '@/components/TopButton';
 
 const FormsPage: NextPage = () => {
@@ -28,8 +27,7 @@ const FormsPage: NextPage = () => {
 
 	return (
 		<Layout>
-			<h1>Forms</h1>
-			<Forms user={user} />
+			<h1>Users</h1>
 			<TopButton text='TOP' />
 		</Layout>
 	);
