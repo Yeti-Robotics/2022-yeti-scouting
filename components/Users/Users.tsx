@@ -60,7 +60,7 @@ const Users: React.FC<FormsProps> = ({ user }) => {
 						<FormCard key={user.username} user={user} />
 					))}
 					<p>
-						Showing {data.length} of {currData?.length} forms
+						Showing {data.length} of {currData?.length} users
 					</p>
 				</ResultsWrapper>
 			) : (
