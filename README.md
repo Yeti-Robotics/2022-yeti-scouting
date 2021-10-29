@@ -13,6 +13,3 @@ First of all, clone this repo. After that, intall the dependancies with ```npm i
 
 ## Deployment
 The site is temporarily [deployed at scouting.ibomb.website](https://scouting.ibomb.website).
-
-## Contribution
-Feel free to open a pull request. If you have any questions or feedback feel free to message me on discord at Ibomb#0221 or open an issue on this repository.
