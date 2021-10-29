@@ -7,9 +7,9 @@ First of all, clone this repo. After that, intall the dependancies with ```npm i
 - [x] Can fill out and submit forms
 - [x] Can create account
 - [x] Certain pages can be locked behind authentication (requires an account)
-- [ ] Page to show the preformance of a specific team
-- [ ] Admin panel
-- [ ] Saving submitted form when offline
+- [x] Page to show the preformance of a specific team
+- [x] Admin panel
+- [x] Saving submitted form when offline
 
 ## Deployment
 The site is temporarily [deployed at scouting.ibomb.website](https://scouting.ibomb.website).
